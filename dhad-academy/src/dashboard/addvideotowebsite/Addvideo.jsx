@@ -8,6 +8,7 @@ function Addvideo() {
 
   const [file, setFile] = useState(null);
   const [title, settitle] = useState('');
+
   const [description, setdescription] = useState('');
   const [url, seturl] = useState('');
   const [videoId, setVideoId] = useState(null);
@@ -52,46 +53,39 @@ function Addvideo() {
       // Otherwise, add a new video
       await axios.post(`${apihttp}video/addVideo`, formData, config)
         .then(response => {
-          console.log(response);
+          console.log(response.status);
           setVideoId(response.data._id);
+          setProgress(null)
+          window.location.reload(true)
         })
         .catch(error => {
-          console.log(error);
+      setError(error.response.data.message );
+      
         });
     }
   }
 
-  async function handleDelete(id) {
+  async function handleDelete() {
 
 
-    await axios.delete(`${apihttp}video/deleteVideo/${id}`)
+    await axios.delete(`${apihttp}video/deleteVideo`)
       .then(response => {
         console.log(response);
         setFile(null);
         settitle('');
         setdescription('');
         setVideoId(null);
+        setVideo(null)
+      setError(response.data.message);
+      window.location.reload(true)
       })
       .catch(error => {
-        console.log(error);
+        setError(error.response.data.message );
+      
       });
   }
 
-  // useEffect(async () => {
-  //   // Fetch the video data when the component mounts
-  //       const headers = { Range: 'bytes=0-' };
 
-  // await  axios.get(`${apihttp}video/getVideo`,{ headers, responseType: 'blob' })
-  //     .then(response => {
-  //         setVideo(response.data.body.getVideo)
-  //         console.log(response);
-
-  //       })
-  //       .catch(error => {
-  //           console.log(error);
-  //       });
-  //   }, []);
-  // console.log(done);
   useEffect(() => {
     const fetchVideo = async () => {
       try {
@@ -99,7 +93,7 @@ function Addvideo() {
         const response = await axios.get(`${apihttp}video/getVideo`, { headers, responseType: 'blob' });
         const videoUrl = URL.createObjectURL(response.data);
         const videoId = response.headers['video-id'];
-
+ 
         setVideo(videoUrl);
       } catch (error) {
         console.error(error);
@@ -145,16 +139,15 @@ function Addvideo() {
                 {video && <source src={video} type="video/mp4" />}
               </video>
               </div>
-            {/* {
-   video? video.map((el)=>(
-       <>
-            <h1>{el.id}</h1>
-              <button type="button" className="btn btn-danger mt-3" onClick={()=>handleDelete(el.id)}>Delete</button>
             
-              </>
-        
-    ))
- :"no videose" } */}
+
+    
+              <button type="button" className="btn btn-danger mt-3" onClick={()=>handleDelete()}>Delete</button>
+     
+           
+ 
+
+
           </div>
         </div>
       </div>

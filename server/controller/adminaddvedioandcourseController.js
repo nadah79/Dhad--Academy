@@ -336,7 +336,7 @@ static deletelessons = async (req, res) => {
 
 static addvideo =async (req,res) => {
 
-    console.log(req.body)
+   
    const {title,description,video}=req.body
    const {error}= videomodel.validateAddvideo(req.body)
 
@@ -348,12 +348,17 @@ static addvideo =async (req,res) => {
  }
 
  try {
+  const getVideo = await videomodel.addVideose.find();
 
+if (getVideo.length>0) {
+  response(res,400,"you already have a video please remove the video to enable to add one ",) 
+  
+}else{
     const postvideo= await new videomodel.addVideose({title:title,description:description,video:req.file.originalname})
 
     await postvideo.save();
 
-    response(res,201,"video  uploaded  successfully",{postvideo},"") 
+    response(res,201,"video  uploaded  successfully",{postvideo},"") }
  } catch (error) {
     response(res,400,"video uploaded  ","",error)
  }
@@ -372,9 +377,7 @@ static getallvideo = async (req, res) => {
     try {
       const getVideo = await videomodel.addVideose.find();
      
-      
- 
-      const videoPath = path.join(__dirname, `../images/${getVideo[0].video}`);
+  const videoPath = path.join(__dirname, `../images/${getVideo[0].video}`);
 
   const range = req.headers.range;
   const videoSize = fs.statSync(videoPath).size;
@@ -405,109 +408,42 @@ static getallvideo = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////
-static updatevideo =async (req,res) => {
 
-    console.log("updatevideo")
-    const {id} = req.params
-    const {title,description,video}=req.body
-
-    try {
-
-
-if(req.file){
-
-try {
-
-
-    const getVideo= await videomodel.addVideose.findById({_id:id});
-console.log(getVideo)
-    await   fs.unlink(path.join(__dirname,`../images/${getVideo.video}`), (err => {
-        if (err) console.log(err);
-        else {
-          console.log("Deleted video: video");
-        }
-      }));
-
-
-
-
-
-
-
-    
-} catch (error) {
-    
-}
-
-
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-     
-    const updateVideo= await videomodel.addVideose.findByIdAndUpdate(id,{title:title,description:description,video:req.file.originalname},{new:true});
-
-
-
-
-        
-
-
-    response(res,201,"video updated successfully",{updateVideo},"") 
-    
-        
-    } catch (error) {
-    response(res,400,"error occured",error) 
-        
-    }
-
-  
-}
 
 static deletevideo =async (req,res) => {
 
 
 
     console.log("deletevideo")
-    const _id = req.params.id
 
+    
+    
     try {
-        const deleteVideo = await videomodel.addVideose.findByIdAndDelete(_id);
-        await   fs.unlink(path.join(__dirname,`../images/${deleteVideo.video}`), (err => {
+       
+      const getVideo = await videomodel.addVideose.find();
+      
+      
+      
+      // if(deleteVideo.deletedCount>0){
+        console.log(getVideo)
+        if(getVideo.length>0){
+          
+          
+          
+          await   fs.unlink (path.join(__dirname,`../images/${getVideo[0].video}`), (err => {
             if (err) console.log(err);
             else {
-                console.log("Deleted file: example_file.txt");
+              console.log("Deleted file: example_file.txt");
             }
-        }));
+          }));
+          const deleteVideo = await videomodel.addVideose.deleteMany();
         
-        response(res,200,"video deleted successfully",{deleteVideo},"") 
+        response(res,200,"video deleted successfully") 
+      }else{
+        response(res,400,"video not exsite") 
+        
+      }
     } catch (error) {
 response(res,400,"error occured",error) 
         
@@ -516,7 +452,7 @@ response(res,400,"error occured",error)
 }
 
 
-    }
+}
 
 
 

@@ -19,8 +19,7 @@ var storage = multer.diskStorage({
 
   router.post('/addVideo',upload,admin.addvideo)
   router.get('/getVideo',admin.getallvideo)
-router.patch('/updateVideo/:id',upload,admin.updatevideo)
-router.delete('/deleteVideo/:id',admin.deletevideo)
+router.delete('/deleteVideo',admin.deletevideo)
 
 
 
