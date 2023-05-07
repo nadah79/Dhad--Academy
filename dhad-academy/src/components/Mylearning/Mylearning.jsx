@@ -50,7 +50,7 @@ console.log(lessons.lessons);
     <Container className='py-5 vh-100' >
     <div className="row d-flex justify-content-center">
       <ToastContainer />
-      {coursesUsers && coursesUsers.length > 0 ? (
+      {coursesUsers && coursesUsers.length > 0 && coursesUsers.some(course => course.courseId) ? (
     coursesUsers.map((course) => (
         // add condition to check for null course ID
        course.courseId && (
