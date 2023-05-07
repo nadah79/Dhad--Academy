@@ -186,6 +186,7 @@ const AddCourses = () => {
   const handleCourseEdit = (course) => {
     setSelectedCourse(course);
     Add();
+    window.scrollTo(0, 0);
     setFormValues({
       title: course.title,
       lessons: course.lessons,
@@ -276,6 +277,7 @@ const AddCourses = () => {
  
   const handleaddlessons = (course) => {
     // console.log(c);
+    window.scrollTo(0, 0);
     setaddcourse(true)
     setidcourse(course._id)
   }
@@ -310,7 +312,7 @@ const AddCourses = () => {
           
         {showAdd?
           <div className='py-2 row'>
-              <h5 className=' text-center'>{selectedCourse ? `Edit Course: ${selectedCourse.courseName}` : 'Create Course'}</h5>
+              <h5 className='py-3 text-decoration-underline'>{selectedCourse ? `Edit Course: ${selectedCourse.courseName}` : 'Create Course'}</h5>
               <div className='col-12 col-lg-6 m-auto'>
           <Form onSubmit={handleFormSubmit}>
             <Form.Group controlId="formCourseName" className='pb-2'>
@@ -372,11 +374,11 @@ const AddCourses = () => {
               <Form.Control type="file" name="image" onChange={handleFileChange} />
             </Form.Group>
             <div className="pt-2 text-center ">
-              <Button type="submit" className=' mx-2  btn-submit border-0 px-4'>
+              <Button type="submit" className=' mx-2  btn-submit border-0 px-4 my-2'>
                 {selectedCourse ? 'Update Course' : 'Create Course'}
               </Button>
               {selectedCourse && (
-               <Button type=" button" onClick={CancelUpdate} className='mx-2 btn-submit border-0 px-5'>
+               <Button type=" button" onClick={CancelUpdate} className='mx-2 btn-submit border-0 my-2 px-5'>
                Cancel
                </Button>
 )}
