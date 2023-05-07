@@ -54,7 +54,7 @@ function Courses() {
         }
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/course/getCourse?coursedepartment=${courseName}`);
+        const res = await axios.get(`${apihttp}course/getCourse?coursedepartment=${courseName}`);
         setCourses(res.data);
         console.log(res.data);
       } catch (error) {
@@ -127,11 +127,11 @@ function Courses() {
       <Container className='py-5'>
       <div className="row d-flex justify-content-center">
       <ToastContainer />
-      {courses.map((course) => (
+      {courses.length>0?courses.map((course) => (
                 <div key={course._id} className="col-10 col-md-6 col-lg-4 pb-5">
-                    <div className="card rounded-20">
+                    <div className="card rounded-20 h-100">
                     <img src={`${apihttp}${course.image}`} height={250} className="rounded-img-top " alt="..." />
-                    <div className="card-body d-flex flex-column justify-content-between" style={{height:"200px"}}>
+                    <div className="card-body d-flex flex-column justify-content-between">
                                 <p className="card-title"><i className="fa-regular fa-clock pe-1"></i>{course.hours} {t('Hours')}</p>
                                 <h6 className="card-text">{course.courseName} </h6>
                                 <div className=' d-flex  '>
@@ -147,7 +147,7 @@ function Courses() {
         </div>
                     </div>
                     </div>
-                        ))} 
+                        )):<div className=' text-center'>No Courses added</div>} 
 
                 </div>
       </Container>

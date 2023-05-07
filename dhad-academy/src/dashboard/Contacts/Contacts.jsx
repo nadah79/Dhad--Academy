@@ -7,6 +7,7 @@ import { Container } from 'react-bootstrap';
 import "./contact.css"
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { apihttp } from '../../api/api';
 
 function Contacts() {
 
@@ -21,7 +22,7 @@ function Contacts() {
   const handleDeleteContact = async (id) => {
     if (user) {
     try {
-      const response = await axios.delete(`http://localhost:5000/contact/deleteMessage/${id}`,
+      const response = await axios.delete(`${apihttp}contact/deleteMessage/${id}`,
       {
         headers: {
          
@@ -44,7 +45,7 @@ function Contacts() {
 
     if (user) {
       try {
-      const response = await axios.delete('http://localhost:5000/contact/deleteMessage',
+      const response = await axios.delete(`${apihttp}contact/deleteMessage`,
       {
         headers: {
          
@@ -65,7 +66,7 @@ function Contacts() {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/contact');
+        const response = await axios.get(`${apihttp}contact`);
         if(response.data.statuscode==200){
         setContacts(response.data.body.getContact);
         }
@@ -98,7 +99,7 @@ function Contacts() {
           <div className="card-body  align-items-center">
           <p>{moment(post.createdAt).fromNow()}</p>
           <p className=' fw-bold'>Name: <span className=' fw-normal'> {post.name} </span></p>
-          <p className=' fw-bold'>Phone Number: <span className=' fw-normal'> {post.phonenumber}</span></p>
+          <p className=' fw-bold'>Email: <span className=' fw-normal'> {post.phonenumber}</span></p>
           <p className=' fw-bold'>subject:<span className=' fw-normal'> {post.message}</span></p>
           <p className=' fw-bold'>message:<span className=' fw-normal'>{post.subject}</span> </p>
           <div className=' text-center mt-3' >

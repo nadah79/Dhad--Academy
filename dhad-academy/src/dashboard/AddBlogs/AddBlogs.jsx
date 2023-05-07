@@ -140,7 +140,7 @@ const AddBlogs = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="details">Details</label>
+          <label htmlFor="descriptionAR">Description (AR)</label>
           <textarea
             className="form-control"
             id="details"
@@ -187,33 +187,35 @@ const AddBlogs = () => {
       )}
 
       </div>
-: <div className='row d-flex justify-content-evenly fs-5'>
+: <div className='row d-flex justify-content-center justify-content-md-start fs-5'>
 {blogs.map((blog) => (
-        <div className="col-12 col-lg-5  card mb-3" key={blog._id}>
-          <div className="card-body">
+        <div className="col-12 col-lg-6  mb-3" key={blog._id}>
+         <div className='card h-100'>
+         <div className="card-body ">
             
-          <p>{moment(blog.createdAt).fromNow()}</p>
-          <div className="py-1 d-flex justify-content-center">
-            <img
-              src={`${apihttp}${blog.image}`}
-              alt={blog.title}
-              width={"60%"} height={200}
-            />
+            <p>{moment(blog.createdAt).fromNow()}</p>
+            <div className="py-1 d-flex justify-content-center">
+              <img
+                src={`${apihttp}${blog.image}`}
+                alt={blog.title}
+                width={"60%"} height={200}
+              />
+              </div>
+              <p className=' m-0 fw-bold'>title: <span className=' fw-normal'>  {blog.title}</span></p>
+              <p className=' m-0 fw-bold'>Description: <span className=' fw-normal'>  {blog.description}</span></p>
+  
+              <p className='m-0 fw-bold'>Details: <span className=' fw-normal'>  {blog.details}</span></p>
+            
+            <div className="pt-3 text-center">
+              <button
+                className=" btn-submit btn px-5"
+                onClick={() => handleDeleteBlog(blog)}
+              >
+                Delete
+              </button>
+              </div>
             </div>
-            <p className=' m-0 fw-bold'>title: <span className=' fw-normal'>  {blog.title}</span></p>
-            <p className=' m-0 fw-bold'>Description: <span className=' fw-normal'>  {blog.description}</span></p>
-
-            <p className='m-0 fw-bold'>Details: <span className=' fw-normal'>  {blog.details}</span></p>
-          
-          <div className="pt-3 text-center">
-            <button
-              className=" btn-submit btn px-5"
-              onClick={() => handleDeleteBlog(blog)}
-            >
-              Delete
-            </button>
-            </div>
-          </div>
+         </div>
         </div>
       ))}
 

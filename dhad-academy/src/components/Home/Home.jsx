@@ -3,7 +3,6 @@ import axios from 'axios';
 import bg from "../../assets/images/home-bg.png"
 import { useDispatch, useSelector } from 'react-redux';
 import actions from '../../actions/actions';
-import * as api from '../../api/api'
 import moment from "moment"
 import { Container } from 'react-bootstrap';
 import OurServices from '../Services/OurServices';
@@ -12,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import"./home.css"
 import { apihttp } from "../../api/api"
 import i18n from 'i18next';
+import Slider from 'react-slick';
 
 
 const Home = () => {
@@ -29,7 +29,7 @@ const Home = () => {
         const fetchVideo = async () => {
           try {
             const headers = { Range: 'bytes=0-' };
-            const response = await axios.get('http://localhost:5000/video/getVideo', { headers, responseType: 'blob' });
+            const response = await axios.get(`${apihttp}video/getVideo`, { headers, responseType: 'blob' });
             const videoUrl = URL.createObjectURL(response.data);
             const videoId = response.headers['video-id'];
     
@@ -40,6 +40,30 @@ const Home = () => {
         };
         fetchVideo();
       }, []);
+
+      const [files, setFiles] = useState([]);
+      const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true, // enable autoplay
+        autoplaySpeed: 2000 // set autoplay speed to 4 seconds
+      };
+      useEffect(() => {
+        fetchFiles();
+      }, []);
+      
+      const fetchFiles = async () => {
+        try {
+          const response = await axios.get(`${apihttp}slider`);
+          setFiles(response.data);
+          console.log(response.data)
+        } catch (error) {
+          console.error(error);
+        }
+      };
 
 // console.log( moment(Date).fromNow());
 const [blogs, setBlogs] = useState([]);
@@ -53,7 +77,7 @@ const [currentPage, setCurrentPage] = useState(1);
     
       const fetchBlogs = async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/blog?page=${currentPage}`);
+          const response = await axios.get(`${apihttp}blog?page=${currentPage}`);
           setBlogs(response.data);
           console.log(response);
           setTotalPages(Math.ceil(response.headers['x-total-count'] / 3)); // assume limit of 3 blogs per page
@@ -127,6 +151,13 @@ const [currentPage, setCurrentPage] = useState(1);
                 </div>
 
                 
+<Slider {...settings}>
+    {files.map((file) => (
+      <div key={file._id}>
+        <img width={"100%"} height={400} src={`${apihttp}${file.name}`} alt={file.name} />
+      </div>
+    ))}
+  </Slider>
             </Container>
             
             {/* {

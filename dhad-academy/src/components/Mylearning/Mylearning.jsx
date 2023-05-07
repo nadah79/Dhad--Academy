@@ -40,17 +40,17 @@ console.log(lessons.lessons);
     
     if (course?.lessons.length>0) {
       
-      nav(`/course/${course.title}`)
+      nav(`/course/${course.courseName}`)
     }
     else{
         toast.success('no lessons in this course yet '); // Display a success message using toast     
     }
   }
   return (
-    <Container className='py-5'>
+    <Container className='py-5 vh-100' >
     <div className="row d-flex justify-content-center">
       <ToastContainer />
-      {coursesUsers ? coursesUsers.map((course) => (
+      {coursesUsers? coursesUsers.map((course) => (
     // add condition to check for null course ID
     course.courseId && (
         <div className="col-10 col-md-6 col-lg-4 pb-5">
@@ -58,7 +58,7 @@ console.log(lessons.lessons);
                 <img src={`${apihttp}${course.courseId?.image}`} height={250} className="rounded-img-top" alt="..." />
                 <div className="card-body d-flex flex-column justify-content-between" style={{height:"200px"}}>
                     <p className="card-title"><i className="fa-regular fa-clock pe-1"></i>{course.courseId?.hours} {t('Hours')}</p>
-                    <h6 className="card-text">{course.courseId?.title } </h6>
+                    <h6 className="card-text">{course.courseId?.courseName } </h6>
                     <h6 className="card-text">{course.courseId?.lessons.length} {t("Lessons")} </h6>
                     <button onClick={()=>handellersendLessons(course.courseId)} className="w-100 btn-submit btn px-5">{t("StartNow")}</button>
                 </div>

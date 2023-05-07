@@ -40,7 +40,7 @@ function Blog() {
     
       const fetchBlogs = async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/blog?page=${currentPage}`);
+          const response = await axios.get(`${apihttp}blog?page=${currentPage}`);
           setBlogs(response.data);
           console.log(response);
           setTotalPages(Math.ceil(response.headers['x-total-count'] / 3)); // assume limit of 3 blogs per page
@@ -63,10 +63,10 @@ function Blog() {
                 {blogs.map((blog) => (
 
                     <div key={blog.id} className="col-10 col-sm-7 col-md-6 col-lg-4  pb-5">
-                        <div className="card rounded-20">
+                        <div className="card rounded-20 h-100">
                             
                             <img src={`${apihttp}${blog.image}`} className="rounded-img-top" height={"320"} alt="..." />
-                            <div className="card-body d-flex flex-column justify-content-between" style={{height:"150px"}}>
+                            <div className="card-body d-flex flex-column justify-content-between">
                                 <p className="card-title"><i className="fa-regular fa-clock pe-1"></i>{blog.updatedAt.split("T")[0]}</p>
                                 <h6 className="card-text">{blog.title} </h6>
                                 <NavLink to={`/blog/${blog.id}`} className='text-decoration-none d-flex align-items-center'>

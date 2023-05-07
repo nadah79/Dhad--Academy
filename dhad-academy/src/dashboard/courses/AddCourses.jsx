@@ -438,65 +438,68 @@ const AddCourses = () => {
           )}
            </div>
                   
-          <div className='py-2 row d-flex justify-content-evenly fs-5'>
+          <div className='py-2 row d-flex justify-content-center justify-content-md-start fs-5'>
         {courses &&
           courses.map((course) => (
-            <div className='col-12 col-md-8 col-lg-5  card mb-3' key={course._id} >
-          <div className="card-body my-2 d-flex flex-column justify-content-between">
+            <div className='col-12 col-md-8 col-lg-5  mb-3' key={course._id} >
+              <div className='card h-100'>
+              <div className="card-body my-2 d-flex flex-column justify-content-between">
 
-              <div className="py-1 d-flex justify-content-center">
-                <img src={`${apihttp}${course.image}`} width={"60%"} height={200} alt={course.courseName} />
-                </div>
-                <div>
-                <p className=' fw-bold'>courseName: <span className=' fw-normal'> {course.courseName}</span></p>
+<div className="py-1 d-flex justify-content-center">
+  <img src={`${apihttp}${course.image}`} width={"60%"} height={200} alt={course.courseName} />
+  </div>
+  <div>
+  <p className=' fw-bold'>courseName: <span className=' fw-normal'> {course.courseName}</span></p>
 
-                <p className=' fw-bold'>lessons: <span className=' fw-normal'> {course.lessons ? course.lessons.length : 0}</span> </p>
-                {course.lessons.length?
-              <div className=''>
-                  <ol>
-              {
-                course.lessons.map((lesson) => (
-                  <li key={lesson._id}>
-                    <div className="d-flex justify-content-between">
-                      <div>{lesson.name}</div>
-                      <a href={`${apihttp}${lesson.pdf}`}>pdf</a>
-                      <a href={lesson.video}>video</a>
-                      <a href={lesson.video}>meeting</a>
+  <p className=' fw-bold'>lessons: <span className=' fw-normal'> {course.lessons ? course.lessons.length : 0}</span> </p>
+  {course.lessons.length?
+<div className=''>
+    <ol>
+{
+  course.lessons.map((lesson) => (
+    <li key={lesson._id}>
+      <div className="">
+        <p>{lesson.name}</p>
+        <p><a href={`${apihttp}${lesson.pdf}`}> {lesson.name} PDF </a></p>
+        <p><a href={lesson.video}>{lesson.name} Video</a></p>
+        <p><a href={lesson.video}>{lesson.name} Meeting</a></p>
 
-                      <div>
-                        {/* <Button variant="info" onClick={() => handleLessonEdit(lesson)}>
-                          Edit
-                        </Button>{' '} */}
-                        <Button className='mx-2 btn-submit border-0 px-5' onClick={() => handleLessonDelete(lesson)}>
-                          Delete
-                        </Button>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-            </ol>
-              </div>
-              :""
-            
+        <div className='text-center'>
+          {/* <Button variant="info" onClick={() => handleLessonEdit(lesson)}>
+            Edit
+          </Button>{' '} */}
+          <Button className='mx-2 btn-submit border-0 px-5' onClick={() => handleLessonDelete(lesson)}>
+            Delete {lesson.name}
+          </Button>
+        </div>
+      </div>
+    </li>
+  ))}
+</ol>
+</div>
+:""
+
 }
-                <p className=' fw-bold'>coursesDepartment: <span className=' fw-normal'> {course.coursesDepartment}</span></p>
-                <p className=' fw-bold'>price: <span className=' fw-normal'> {course.price}</span></p>
-                <p className=' fw-bold'>Discount: <span className=' fw-normal'> {course.title}</span></p>
-                <p className=' fw-bold'>hours: <span className=' fw-normal'> {course.hours}</span></p>
-                
-                </div>
-                <div className=' py-3 row d-flex justify-content-center'>
-                  <Button className='m-2 btn-submit col-8 col-xl-5  border-0 px-5' onClick={() => handleCourseEdit(course)}>
-                    Edit
-                  </Button>{' '}
-                  <Button className='m-2 btn-submit col-8 col-xl-5  border-0 px-5' onClick={() => handleCourseDelete(course)}>
-                    Delete
-                  </Button>
-                  <Button className='m-2 btn-submit col-8 col-xl-6   border-0 px-5' onClick={() => handleaddlessons(course)}>
-                    Add lesson
-                  </Button>
-                </div>
+  <p className=' fw-bold'>coursesDepartment: <span className=' fw-normal'> {course.coursesDepartment}</span></p>
+  <p className=' fw-bold'>price: <span className=' fw-normal'> {course.price}</span></p>
+  <p className=' fw-bold'>Discount: <span className=' fw-normal'> {course.title}</span></p>
+  <p className=' fw-bold'>hours: <span className=' fw-normal'> {course.hours}</span></p>
+  
+  </div>
+  <div className=' py-3 row d-flex justify-content-center'>
+    <Button className='m-2 btn-submit col-8 col-xl-5  border-0 px-5' onClick={() => handleCourseEdit(course)}>
+      Edit
+    </Button>{' '}
+    <Button className='m-2 btn-submit col-8 col-xl-5  border-0 px-5' onClick={() => handleCourseDelete(course)}>
+      Delete
+    </Button>
+    <Button className='m-2 btn-submit col-8 col-xl-6   border-0 px-5' onClick={() => handleaddlessons(course)}>
+      Add lesson
+    </Button>
+  </div>
+</div>
               </div>
+
 
             </div>
 

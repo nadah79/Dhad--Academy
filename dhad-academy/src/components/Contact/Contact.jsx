@@ -7,6 +7,7 @@ import './contact.css';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 import { NavLink } from 'react-router-dom';
+import { apihttp } from '../../api/api';
 
 function Contact() {
   const [t] = useTranslation();
@@ -26,7 +27,7 @@ function Contact() {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/contact/sendMessage', {
+      const response = await fetch(`${apihttp}contact/sendMessage`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

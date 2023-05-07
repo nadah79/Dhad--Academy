@@ -88,7 +88,7 @@ function Enrollment() {
         <tbody>
           {enrollmentRequests ? enrollmentRequests.map((enrollmentRequest) => (
             <tr key={enrollmentRequest._id}>
-              <td>{enrollmentRequest.userId?.usernam}</td>
+              <td>{enrollmentRequest.userId?.username}</td>
               <td><img src={`${apihttp}${enrollmentRequest.userId?.image}`}alt="" width={100} height={100} srcset="" /></td>
               <td>{enrollmentRequest.userId?.email}</td>
               <td>{enrollmentRequest.courseId?.courseName}</td>

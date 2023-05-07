@@ -5,6 +5,8 @@ import Dropzone from 'react-dropzone';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { apihttp } from '../../api/api';
+import { Container } from 'react-bootstrap';
 function SliderAdmin() {
   const [updatedFile, setUpdatedFile] = useState(null);
   const [files, setFiles] = useState([]);
@@ -15,7 +17,7 @@ useEffect(() => {
 
 const fetchFiles = async () => {
   try {
-    const response = await axios.get('http://localhost:5000/slider');
+    const response = await axios.get(`${apihttp}slider`);
     setFiles(response.data);
     console.log(response.data)
   } catch (error) {
@@ -27,7 +29,7 @@ const handleUpload = async (acceptedFiles) => {
   try {
     const formData = new FormData();
     formData.append('image', acceptedFiles[0]);
-    const response = await axios.post('http://localhost:5000/slider', formData);
+    const response = await axios.post(`${apihttp}slider`, formData);
     setFiles((prevFiles) => [...prevFiles, response.data]);
   } catch (error) {
     console.error(error);
@@ -36,7 +38,7 @@ const handleUpload = async (acceptedFiles) => {
 
 const handleDownload = async (fileId) => {
   try {
-    const response = await axios.get(`http://localhost:5000/slider/${fileId}`, {
+    const response = await axios.get(`${apihttp}slider/${fileId}`, {
       responseType: 'blob',
     });
     console.log(response);
@@ -58,7 +60,7 @@ const handleUpdate = async (fileId) => {
   try {
     const formData = new FormData();
     formData.append('file', updatedFile);
-    const response = await axios.put(`http://localhost:5000/slider/${fileId}`, formData);
+    const response = await axios.put(`${apihttp}slider/${fileId}`, formData);
     setFiles((prevFiles) =>
       prevFiles.map((file) => (file._id === fileId ? response.data : file))
     );
@@ -70,7 +72,7 @@ const handleUpdate = async (fileId) => {
 
 const handleDelete = async (fileId) => {
   try {
-    await axios.delete(`http://localhost:5000/slider/${fileId}`);
+    await axios.delete(`${apihttp}slider/${fileId}`);
     setFiles((prevFiles) =>
       prevFiles.filter((file) => file._id !== fileId)
     );
@@ -89,35 +91,39 @@ const settings = {
 };
 return (
   <div>
-
-<Slider {...settings}>
-    {files.map((file) => (
-      <div key={file._id}>
-        <img width={700} height={400} src={`http://localhost:5000/${file.name}`} alt={file.name} />
-      </div>
-    ))}
-  </Slider>
-
-    <h1>File Uploader</h1>
+<Container className='py-5'>
+    <h5>File Uploader</h5>
     <Dropzone onDrop={handleUpload}>
       {({ getRootProps, getInputProps }) => (
-        <div {...getRootProps()} style={{ border: '1px solid black' }}>
-          <input {...getInputProps()} />
-          <p>Drag and drop a file here, or click to select a file</p>
+        <div {...getRootProps()} style={{ border: '1px solid black' }} className="form-group text-center">
+          <input {...getInputProps()} type="file"
+            className="form-control" />
+          <label htmlFor="image">Select Image</label>
         </div>
       )}
     </Dropzone>
-    <h2>Files</h2>
+    </Container>
+
+    <Container className='py-5'>
+    <h5>Files</h5>
     <ul>
       {files.map((file) => (
-        <li key={file._id}>
+        <li key={file._id} className='py-2'>
           {file.name} ({file.mimetype})
-          <img src={`http://localhost:5000/${file.name}`} width={200} />
-          <button onClick={() => handleDownload(file._id)}>Download</button>
-          <button onClick={() => handleDelete(file._id)}>Delete</button>
+          <img src={`${apihttp}${file.name}`} width={200} />
+          <button className='btn btn-light  m-2' onClick={() => handleDownload(file._id)}>Download</button>
+          <button className='btn btn-dark m-2' onClick={() => handleDelete(file._id)}>Delete</button>
         </li>
       ))}
     </ul>
+        </Container>
+        <Slider {...settings}>
+    {files.map((file) => (
+      <div key={file._id}>
+        <img width={"100%"} height={400} src={`${apihttp}${file.name}`} alt={file.name} />
+      </div>
+    ))}
+  </Slider>
   </div>
 );
 }
