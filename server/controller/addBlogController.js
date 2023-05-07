@@ -139,6 +139,9 @@ console.log(fileName)
     const _id = req.params.id
 
     try {
+      if (_id) {
+        
+     
         const deleteblog= await blogmodel.addBlog.findByIdAndDelete(_id);
         if(!deleteblog){
           return response(res,400,"blog not found to deleted") 
@@ -163,7 +166,10 @@ console.log(fileName)
           }})
 
 
+        }else{
+        return response(res,400,"no id exsite") 
 
+        }
         
          }} catch (error) {
         return response(res,400,"error occured",error) 
