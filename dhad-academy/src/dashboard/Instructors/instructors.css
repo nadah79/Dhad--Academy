@@ -1,0 +1,11 @@
+.instructors .active{
+    background-color: rgba( var(--primary-color-rgb),50%) !important;
+    border: none !important;
+}
+.instructors .btn:focus{
+    border: none !important;
+}
+.instructors .btn:hover{
+    background-color: rgba( var(--primary-color-rgb),50%) ;
+
+}

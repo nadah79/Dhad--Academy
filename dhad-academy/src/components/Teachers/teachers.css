@@ -1,0 +1,20 @@
+.be-instructor{
+    background-color: var(--primary-color);
+    height: 250px;
+}
+.btn-apply{
+    background-color: var(--secondry-color) !important;
+    color: var(--white) !important;
+    z-index: 1;
+    padding:0.5rem 3.5rem !important;
+}
+.circle{
+    width: 300px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 20%);
+
+}
+.circle2{
+    top:105%;
+    left: 88%;
+}

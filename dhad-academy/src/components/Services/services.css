@@ -1,0 +1,9 @@
+.services .card{
+    height: 200px !important;
+    background-color: var(--primary-color) !important;
+    border: none;
+}
+.services .card a{
+    color: var(--secondry-color) !important ;
+    text-decoration: none;
+}

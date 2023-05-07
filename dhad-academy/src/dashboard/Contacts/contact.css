@@ -1,0 +1,4 @@
+.btn-delete,.btn-delete:hover{
+
+    background-color: rgba( var(--primary-color-rgb)) ;
+}

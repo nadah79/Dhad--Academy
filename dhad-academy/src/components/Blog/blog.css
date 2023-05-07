@@ -1,0 +1,19 @@
+.pagination-circle {
+    width: 50px ;
+    height: 50px;
+    border-radius: 50% ;
+    border: 2px solid rgba(var(--secondry-color-rgb),30%);
+    margin:0 10px;
+    color:rgba(var(--secondry-color-rgb),30%);
+    background-color: transparent;
+}
+ .active-circle {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+}
+
+
+.card a ,.card i{
+    color: var(--secondry-color) !important; 
+}

@@ -1,0 +1,11 @@
+.home-bg-img{
+height: 450px;
+}
+@media (max-width: 400px) {
+    .home-bg-img{
+        height: 300px;
+        }
+  }
+  .card a ,.card i{
+    color: var(--secondry-color) !important; 
+}

@@ -1,0 +1,16 @@
+.sidebar{
+    background-color: #fff !important;
+    color: var(--secondry-color) !important;
+}
+.sidebar a{
+    color: var(--secondry-color) !important;
+
+}
+.sidebar a.active ,.sidebar a:hover {
+    color: var(--primary-color) !important;
+  }
+.sidebar a.active .active-item {
+    background-color: rgba( var(--primary-color-rgb),50%) !important;
+    color: var(--white) !important;
+    border-radius: 5px;
+}

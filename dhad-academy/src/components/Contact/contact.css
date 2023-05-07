@@ -1,0 +1,40 @@
+.btn-submit{
+    background: var(--primary-color) !important;
+    color: var(--white) !important;   
+}
+
+.btn-submit:hover{
+    background: var(--white) !important;
+    color: var(--primary-color) !important;   
+}
+.form-control ,.form-select {
+    border: none !important;
+} 
+.form-control:focus ,.form-select:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 0.1rem rgba(var(--primary-color-rgb),0.25 )!important;
+} 
+.hr{
+    border-bottom: 1px solid rgba(var(--primary-color-rgb),0.5);
+    width: 6%;
+    margin-bottom: 0.5em;
+}
+i{
+    color: var(--primary-color);
+    padding-inline-end: 10px;
+}
+
+.success-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 9999;
+  }
+   .email a, .email a:hover{
+    color:var(--secondry-color) !important;
+    text-decoration: none !important;
+  }
