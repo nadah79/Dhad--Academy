@@ -25,10 +25,11 @@ static addCourse =async (req,res) => {
 const fileName = path.basename(filePath);
     
         const course = new coursemodel.addCourse({
-          title: req.body.title,
+          offer: req.body.offer,
           lessons: req.body.lessons || [],
           image: req.file ? fileName : '',
           courseName: req.body.courseName,
+          courseNameAR: req.body.courseNameAR,
           coursesDepartment: req.body.coursesDepartment,
           price: req.body.price,
           hours: req.body.hours,
@@ -88,8 +89,9 @@ static updateCourse = async (req, res) => {
   const { id } = req.params;
   console.log(req.body);
 
-  const title = req.body.title;
+  const offer = req.body.offer;
   const courseName = req.body.courseName;
+  const courseNameAR = req.body.courseNameAR;
   const coursesDepartment = req.body.coursesDepartment;
   const price = req.body.price;
   const hours = req.body.hours;
@@ -112,7 +114,7 @@ static updateCourse = async (req, res) => {
 
       const updateCourse = await coursemodel.addCourse.findByIdAndUpdate(
         id,
-        { title: title, image: image, courseName: courseName, coursesDepartment: coursesDepartment, price: price, hours: hours },
+        { offer: offer, image: image, courseName: courseName, courseNameAR: courseNameAR, coursesDepartment: coursesDepartment, price: price, hours: hours },
         { new: true }
       );
       response(res, 201, "course updated successfully", { updateCourse }, "");
@@ -125,7 +127,7 @@ static updateCourse = async (req, res) => {
 
       const updateCourse = await coursemodel.addCourse.findByIdAndUpdate(
         id,
-        { title: title, lessons: lessons, courseName: courseName, coursesDepartment: coursesDepartment, price: price, hours: hours },
+        { offer: offer, lessons: lessons, courseName: courseName , courseNameAR: courseNameAR , coursesDepartment: coursesDepartment, price: price, hours: hours },
         { new: true }
       );
       console.log(updateCourse);

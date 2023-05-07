@@ -109,7 +109,6 @@ function Addvideo() {
       <div className='col-12 col-lg-6 m-auto'>
           <form onSubmit={handleSubmit}>
             <div className='row'>
-              {error && <div className="alert alert-danger">{error}</div>}
               <div className="form-group col-12 pb-2">
                 <label htmlFor="title">Title:</label>
                 <input type="text" className="form-control" id="title" name="title" value={title} onChange={(e) => settitle(e.target.value)} />
@@ -129,28 +128,34 @@ function Addvideo() {
   <progress value={progress} max="100" />
 )}
 
-              {url && <video src={url} controls className="mt-3" />}
+
+              {url && 
+                  <video src={url} controls className="mt-3" />
+               }
             </div>
           </form>
+          </div>
 
-          <div>
-      <div className='col-12 pt-5  m-auto'>
-                      <video width={"100%"}  controls>
-                {video && <source src={video} type="video/mp4" />}
+
+      <div className='col-12 py-5 text-center'>
+      {video ? <div>
+        <video width={"100%"}  controls>
+                 <source src={video} type="video/mp4" />
               </video>
+              <button type="button" className="btn btn-accecpt my-3" onClick={()=>handleDelete()}>Delete Video</button>
+
+      </div>
+              :
+              <div className=''>
+                <p>No video added</p>
+              </div>}
+              {error && <div className="alert alert-danger">{error}</div>}
+
               </div>
             
 
     
-              <button type="button" className="btn btn-danger mt-3" onClick={()=>handleDelete()}>Delete</button>
-     
-           
- 
-
-
           </div>
-        </div>
-      </div>
     </>
 
 

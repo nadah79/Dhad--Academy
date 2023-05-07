@@ -8,6 +8,7 @@ import { useEffect,useState  } from "react";
 
 
 import { useNavigate } from 'react-router-dom';
+import ScrollToTop from './components/Top-btn/ScrollToTop';
 
 function App() {
   const nav = useNavigate()
@@ -24,9 +25,10 @@ const token = JSON.parse(localStorage.getItem("token"))
 console.log(token)
   return (
     <>
-  <div className="App">
+  <div className="App vh-100">
   <Header/>
   <Roting/>
+  <ScrollToTop/>
   <Footer/>
     </div>
     

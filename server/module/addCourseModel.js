@@ -28,9 +28,11 @@ const lessonSchema = new mongoose.Schema({
 });
 
 const courseSchema = new mongoose.Schema({
-  title: {
+  offer: {
     type: String,
-    required: true,
+    required: [true, 'the offer is required field'],
+    trim: true,
+
   },
   lessons: [lessonSchema],
   image: {
@@ -41,6 +43,11 @@ const courseSchema = new mongoose.Schema({
   courseName: {
     type: String,
     required: [true, 'the courseName is required field'],
+    trim: true,
+    lowercase: true
+  },courseNameAR: {
+    type: String,
+    required: [true, 'the courseName AR is required field'],
     trim: true,
     lowercase: true
   },
@@ -71,7 +78,8 @@ function validateaddcourse (obj){
 const schema = joi.object({
 coursesDepartment : joi.string().trim().required(),
 courseName :joi.string().trim().min(15).required(),
-title :joi.string().trim().required(),
+courseNameAR :joi.string().trim().min(15).required(),
+offer :joi.string().trim().required(),
 price :joi.string().trim().required(),
 hours :joi.string().trim().required(),
 

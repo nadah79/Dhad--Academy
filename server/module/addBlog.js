@@ -12,16 +12,24 @@ const addBlogModel = mongoose.Schema({
         maxLength:200,
         
     },
+    titleAR: {
+        type:String,
+        required:[true,"enter your name please"],
+        trim: true,
+        minLength:10,
+        maxLength:200,
+        
+    },
     description: {
         type: String,
         required:[true,"the discription is required field"],
         trim: true,
         lowercase: true
     },
-    details: {
+    descriptionAR: {
         type: String,
         trim: true,
-        required: [true, 'add details ']
+        required: [true, 'the discriptionAR is required field']
     },
     image: {
         type: String,
@@ -44,9 +52,10 @@ addBlogModel.virtual('comment',{
 function validateaddBlog (obj){
 
 const schema = joi.object({
-title : joi.string().trim().min(10).max(200).required(),
-description :joi.string().trim().min(15).required(),
-details :joi.string().trim().min(15).required(),
+    title : joi.string().trim().min(10).max(200).required(),
+    titleAR : joi.string().trim().min(10).max(200).required(),
+    description :joi.string().trim().min(15).required(),
+    descriptionAR :joi.string().trim().min(15).required(),
 
 });
 return schema.validate(obj);

@@ -103,7 +103,7 @@ const id = req.params.id
 
 
 
-        const {title,description,details} = req.body;
+        const {title,titleAR,description,descriptionAR,details} = req.body;
  
 
         const imagePath = req.file.path
@@ -114,7 +114,7 @@ const fileName = path.basename(filePath);
 console.log(fileName)
 
              const postBlog= await new blogmodel.addBlog(
-     {image:fileName,title:title,description:description,details:details }
+     {image:fileName,title:title,titleAR:titleAR,description:description,descriptionAR:descriptionAR,details:details }
   
              )
              

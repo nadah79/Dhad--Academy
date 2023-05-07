@@ -8,8 +8,9 @@ import { useNavigate } from 'react-router';
 const AddBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState('');
+  const [titleAR, setTitleAR] = useState('');
   const [description, setDescription] = useState('');
-  const [details, setDetails] = useState('');
+  const [descriptionAR, setDescriptionAR] = useState('');
   const [image, setImage] = useState(null);
   const [updatingBlogId, setUpdatingBlogId] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -35,8 +36,9 @@ const AddBlogs = () => {
 
     const formData = new FormData();
     formData.append('title', title);
+    formData.append('titleAR', titleAR);
     formData.append('description', description);
-    formData.append('details', details);
+    formData.append('descriptionAR', descriptionAR);
     formData.append('image', image);
     if (user) {
     try {
@@ -55,8 +57,9 @@ const AddBlogs = () => {
       });
       fetchBlogs();
       setTitle('');
+      setTitleAR('');
       setDescription('');
-      setDetails('');
+      setDescriptionAR('');
       setImage(null);
       setUploadProgress(0);
       setErrorMessage('');
@@ -129,6 +132,18 @@ const AddBlogs = () => {
         </div>
 
         <div className="form-group">
+          <label htmlFor="titleAR">Title (AR)</label>
+          <input
+            type="text"
+            className="form-control"
+            id="titleAR"
+            value={titleAR}
+            onChange={(event) => setTitleAR(event.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
           <label htmlFor="description">Description</label>
           <textarea
             className="form-control"
@@ -143,9 +158,9 @@ const AddBlogs = () => {
           <label htmlFor="descriptionAR">Description (AR)</label>
           <textarea
             className="form-control"
-            id="details"
-            value={details}
-            onChange={(event) => setDetails(event.target.value)}
+            id="descriptionAR"
+            value={descriptionAR}
+            onChange={(event) => setDescriptionAR(event.target.value)}
             required
           ></textarea>
         </div>
@@ -202,9 +217,10 @@ const AddBlogs = () => {
               />
               </div>
               <p className=' m-0 fw-bold'>title: <span className=' fw-normal'>  {blog.title}</span></p>
+              <p className=' m-0 fw-bold'>title (AR): <span className=' fw-normal'>  {blog.titleAR}</span></p>
               <p className=' m-0 fw-bold'>Description: <span className=' fw-normal'>  {blog.description}</span></p>
   
-              <p className='m-0 fw-bold'>Details: <span className=' fw-normal'>  {blog.details}</span></p>
+              <p className='m-0 fw-bold'>description (AR): <span className=' fw-normal'>  {blog.descriptionAR}</span></p>
             
             <div className="pt-3 text-center">
               <button

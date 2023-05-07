@@ -17,41 +17,41 @@ function Courses() {
   const nav = useNavigate();
 
   useEffect(() => {
-    document.title ="Courses";  
+    document.title = "Courses";
   }, []);
-  const {name}=useParams();
+  const { name } = useParams();
 
   const [courses, setCourses] = useState([]);
   const [coursesUsers, setcoursesUsers] = useState([]);
 
-  const getCourseName =() => {
-  
+  const getCourseName = () => {
+
   };
 
-  useEffect(() => {  
-      let courseName="";
-      switch(name) {
-        case "Arabic":
-          courseName="Arabic";
-          break;
-        case "QuranAndReadings":
-          courseName="Quran and readings"
-          break;
-             case "IslamicStudies":
-              courseName="Islamic studies"
-            break;
-             case "QualifyingCourses":
-              courseName="Qualifying Courses"
-            break;
-             case "CraftsAndSkills":
-              courseName="Crafts and Skills"
-            break;
-            case "FieldTrips":
-              courseName="Field tourism";
-              break;
-        default:
-          courseName="";
-        }
+  useEffect(() => {
+    let courseName = "";
+    switch (name) {
+      case "Arabic":
+        courseName = "Arabic";
+        break;
+      case "QuranAndReadings":
+        courseName = "Quran and readings"
+        break;
+      case "IslamicStudies":
+        courseName = "Islamic studies"
+        break;
+      case "QualifyingCourses":
+        courseName = "Qualifying Courses"
+        break;
+      case "CraftsAndSkills":
+        courseName = "Crafts and Skills"
+        break;
+      case "FieldTrips":
+        courseName = "Field tourism";
+        break;
+      default:
+        courseName = "";
+    }
     const fetchData = async () => {
       try {
         const res = await axios.get(`${apihttp}course/getCourse?coursedepartment=${courseName}`);
@@ -65,7 +65,7 @@ function Courses() {
     getCourseName();
   }, [name]);
 
-  const handellerEnroll = async (course) => { 
+  const handellerEnroll = async (course) => {
     if (user) {
       try {
         await axios.post(`${apihttp}userRegistration/enrollment/${course._id}`, null, {
@@ -73,21 +73,21 @@ function Courses() {
             Authorization: `Bearer ${user.token}`
           }
         })
-        .then((response) => {
-          if (response.status === 201) { // Check if the response status is successful
-            // nav(`/course/${course.title}`); // Redirect to the course page
-            toast.success('You have successfully enrolled in the course contact us to display all matrials!'); // Display a success message using toast
-            
-          }
-          if (response.status === 400) { // Check if the response status is successful
-            // nav(`/course/${course.title}`); // Redirect to the course page
-            toast.warning(' You Already Enrollment request '); // Display a success message using toast
-          
-          }
-        });
+          .then((response) => {
+            if (response.status === 201) { // Check if the response status is successful
+              // nav(`/course/${course.title}`); // Redirect to the course page
+              toast.success('You have successfully enrolled in the course contact us to display all matrials!'); // Display a success message using toast
+
+            }
+            if (response.status === 400) { // Check if the response status is successful
+              // nav(`/course/${course.title}`); // Redirect to the course page
+              toast.warning(' You Already Enrollment request '); // Display a success message using toast
+
+            }
+          });
       } catch (error) {
         toast.warning(' You Already Enrollment request '); // Display a success message using toast
-        
+
       }
     } else {
       nav('/myprofile');
@@ -98,7 +98,7 @@ function Courses() {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${apihttp}userRegistration/courses/${user._id}`);
-        
+
         console.log(res.data);
         setcoursesUsers(res.data)
       } catch (error) {
@@ -113,10 +113,10 @@ function Courses() {
 
 
 
-    
-  
-  
-  useEffect(() => {  
+
+
+
+  useEffect(() => {
     getCourseName();
   });
 
@@ -125,38 +125,38 @@ function Courses() {
     <>
       <CommonSection title={t(`${name}`)} img={`${course}`} />
       <Container className='py-5'>
-      <div className="row d-flex justify-content-center">
-      <ToastContainer />
-      {courses.length>0?courses.map((course) => (
-                <div key={course._id} className="col-10 col-md-6 col-lg-4 pb-5">
-                    <div className="card rounded-20 h-100">
-                    <img src={`${apihttp}${course.image}`} height={250} className="rounded-img-top " alt="..." />
-                    <div className="card-body d-flex flex-column justify-content-between">
-                                <p className="card-title"><i className="fa-regular fa-clock pe-1"></i>{course.hours} {t('Hours')}</p>
-                                <h6 className="card-text">{course.courseName} </h6>
-                                <div className=' d-flex  '>
-                                <span className=' '>{course.title} {t('EGP')}</span>
-                                <p className='px-3 text-decoration-line-through'>{course.price} {t('EGP')}</p>
-                          
-                                </div>
+        <div className="row d-flex justify-content-center">
+          <ToastContainer />
+          {courses.length > 0 ? courses.map((course) => (
+            <div key={course._id} className="col-10 col-md-6 col-lg-4 pb-5">
+              <div className="card rounded-20 h-100">
+                <img src={`${apihttp}${course.image}`} height={250} className="rounded-img-top " alt="..." />
+                <div className="card-body d-flex flex-column justify-content-between">
+                  <p className="card-title"><i className="fa-regular fa-clock pe-1"></i>{course.hours} {t('Hours')}</p>
+                  <h6 className="card-text">{course.courseName} </h6>
+                  <div className=' d-flex  '>
+                    <span className=' '>{course.title} {t('EGP')}</span>
+                    <p className='px-3 text-decoration-line-through'>{course.price} {t('EGP')}</p>
 
-                        
-        <button onClick={()=>handellerEnroll(course)} className="w-100 btn-submit btn px-5">
-        {t("EnrollNow")}
-        </button>
+                  </div>
+
+
+                  <button onClick={() => handellerEnroll(course)} className="w-100 btn-submit btn px-5">
+                    {t("EnrollNow")}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )) : <div className=' text-center'>No Courses added</div>}
+
         </div>
-                    </div>
-                    </div>
-                        )):<div className=' text-center'>No Courses added</div>} 
-
-                </div>
       </Container>
-           <div>     {coursesUsers.map((el)=>(<div>
-                    <h1>{el.course}</h1>
-                  </div>))}
-                  
-               
-                </div>
+      <div>     {coursesUsers.map((el) => (<div>
+        <h1>{el.course}</h1>
+      </div>))}
+
+
+      </div>
     </>
   )
 }

@@ -13,13 +13,15 @@ const AddCourses = () => {
   const nav = useNavigate();
 
   const [formValues, setFormValues] = useState({
-    title: '',
     lessons: [],
     image: null,
     courseName: '',
+    courseNameAR: '',
     coursesDepartment: '',
     price: '',
+    offer: '',
     hours: '',
+
   });
   const [lessonFormValues, setLessonFormValues] = useState({
     name: '',
@@ -75,8 +77,9 @@ const AddCourses = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append('title', formValues.title);
+    formData.append('offer', formValues.offer);
     formData.append('courseName', formValues.courseName);
+    formData.append('courseNameAR', formValues.courseNameAR);
     formData.append('coursesDepartment', formValues.coursesDepartment);
     formData.append('price', formValues.price);
     formData.append('hours', formValues.hours);
@@ -121,10 +124,11 @@ const AddCourses = () => {
         setCourses((prevCourses) => [...prevCourses, response.data]);
       }
       setFormValues({
-        title: '',
+        offer: '',
         lessons: [],
         image: null,
         courseName: '',
+        courseNameAR: '',
         coursesDepartment: '',
         price: '',
         hours: '',
@@ -188,9 +192,10 @@ const AddCourses = () => {
     Add();
     window.scrollTo(0, 0);
     setFormValues({
-      title: course.title,
+      offer: course.offer,
       lessons: course.lessons,
       courseName: course.courseName,
+      courseNameAR: course.courseNameAR,
       coursesDepartment: course.coursesDepartment,
       price: course.price,
       hours: course.hours,
@@ -289,10 +294,11 @@ const AddCourses = () => {
    setShowAdd(false);
    setSelectedCourse(null);
    setFormValues({
-    title: '',
+    offer: '',
     lessons: [],
     image: null,
     courseName: '',
+    courseNameAR: '',
     coursesDepartment: '',
     price: '',
     hours: '',
@@ -315,12 +321,21 @@ const AddCourses = () => {
               <h5 className='py-3 text-decoration-underline'>{selectedCourse ? `Edit Course: ${selectedCourse.courseName}` : 'Create Course'}</h5>
               <div className='col-12 col-lg-6 m-auto'>
           <Form onSubmit={handleFormSubmit}>
-            <Form.Group controlId="formCourseName" className='pb-2'>
+          <Form.Group controlId="formCourseName" className='pb-2'>
               <Form.Label>Course Name:</Form.Label>
               <Form.Control
                 type="text"
                 name="courseName"
                 value={formValues.courseName}
+                onChange={handleFormChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="formCourseNameAR" className='pb-2'>
+              <Form.Label>Course Name (AR):</Form.Label>
+              <Form.Control
+                type="text"
+                name="courseNameAR"
+                value={formValues.courseNameAR}
                 onChange={handleFormChange}
               />
             </Form.Group>
@@ -351,12 +366,12 @@ const AddCourses = () => {
                 onChange={handleFormChange}
               />
               </Form.Group>
-              <Form.Group controlId="formTitle" className='pb-2'>
+              <Form.Group controlId="offer" className='pb-2'>
               <Form.Label>Price after discount:</Form.Label>
               <Form.Control
                 type="text"
-                name="title"
-                value={formValues.title}
+                name="offer"
+                value={formValues.offer}
                 onChange={handleFormChange}
               />
             </Form.Group>
@@ -441,7 +456,7 @@ const AddCourses = () => {
           <div className='py-2 row d-flex justify-content-center justify-content-md-start fs-5'>
         {courses &&
           courses.map((course) => (
-            <div className='col-12 col-md-8 col-lg-5  mb-3' key={course._id} >
+            <div className='col-12 col-md-8 col-lg-6  mb-3' key={course._id} >
               <div className='card h-100'>
               <div className="card-body my-2 d-flex flex-column justify-content-between">
 
@@ -450,6 +465,7 @@ const AddCourses = () => {
   </div>
   <div>
   <p className=' fw-bold'>courseName: <span className=' fw-normal'> {course.courseName}</span></p>
+  <p className=' fw-bold'>courseName (AR): <span className=' fw-normal'> {course.courseNameAR}</span></p>
 
   <p className=' fw-bold'>lessons: <span className=' fw-normal'> {course.lessons ? course.lessons.length : 0}</span> </p>
   {course.lessons.length?
@@ -482,7 +498,7 @@ const AddCourses = () => {
 }
   <p className=' fw-bold'>coursesDepartment: <span className=' fw-normal'> {course.coursesDepartment}</span></p>
   <p className=' fw-bold'>price: <span className=' fw-normal'> {course.price}</span></p>
-  <p className=' fw-bold'>Discount: <span className=' fw-normal'> {course.title}</span></p>
+  <p className=' fw-bold'>Discount: <span className=' fw-normal'> {course.offer}</span></p>
   <p className=' fw-bold'>hours: <span className=' fw-normal'> {course.hours}</span></p>
   
   </div>
