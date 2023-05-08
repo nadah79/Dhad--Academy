@@ -53,7 +53,7 @@ const userSchema = mongoose.Schema({
 
 userSchema.methods.generateAuthToken = function(){
 
-   return jwt.sign({courses:this.courses,id:this._id,username:this.username,admin:this.isAdmin,email:this.email,image:this.image},process.env.TOKEN,{expiresIn:"1d"})
+   return jwt.sign({courses:this.courses,id:this._id,username:this.username,admin:this.isAdmin,email:this.email,image:this.image},process.env.TOKEN,{expiresIn:`5h`})
 
 }
 function validateRegistration (obj){
