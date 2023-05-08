@@ -1,3 +1,4 @@
+import moment from "moment"
 
 import React, { useEffect, useState } from 'react';
 import './blog-details.css';
@@ -135,7 +136,10 @@ console.log(id);
                   />
                 </Col>
                 <Col xs={11} className="p-2">
+
+          <p style={{fontSize:"16px",fontFamily:"bold",fontWeight:"bold"}}>{moment(comment.createdAt).fromNow()}</p>
                   <h5>{comment.username}</h5>
+      
                   <p>{comment.text}</p>
                 </Col>
               </>
