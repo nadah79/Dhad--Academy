@@ -77,7 +77,11 @@ const handleUpdate = async (fileId) => {
 
 const handleDelete = async (fileId) => {
   try {
-    await axios.delete(`${apihttp}slider/${fileId}`);
+    await axios.delete(`${apihttp}slider/${fileId}`,{headers: {
+      // 'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${user?.token}`,
+
+    }});
     setFiles((prevFiles) =>
       prevFiles.filter((file) => file._id !== fileId)
     );
