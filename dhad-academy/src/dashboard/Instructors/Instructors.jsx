@@ -129,7 +129,7 @@ const Instructors = () => {
     console.log("users");
     getUsers(category);
     setSelectedUser(null);
-    console.log(selectedUser,"ssssssssss")
+    // console.log(selectedUser,"ssssssssss")
     setUsername('');
     setEmail('');
     setPassword('');
@@ -141,11 +141,12 @@ const Instructors = () => {
 
     if (user) {
       try {
+        window.location.reload(true)
 
      const res=  await axios.put(`${apihttp}userRegistration/${selectedUser._id}`,formData,
      {
        headers: {
-         // 'Content-Type': 'multipart/form-data',
+      
          Authorization: `Bearer ${user.token}`,
 
        }
@@ -158,7 +159,8 @@ const Instructors = () => {
           
         }
         );
-  
+        
+        console.log(res);
       } catch (error) {
         console.log('Error updating user:', error);
       }
