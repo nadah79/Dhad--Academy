@@ -126,7 +126,7 @@ const Instructors = () => {
     if (image) {
       formData.append('image', image);
     }
-    console.log("users");
+       console.log("users");
     getUsers(category);
     setSelectedUser(null);
     console.log(selectedUser,"ssssssssss")

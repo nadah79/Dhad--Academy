@@ -24,7 +24,6 @@ function Courses() {
 
   const [courses, setCourses] = useState([]);
   const [coursesUsers, setcoursesUsers] = useState([]);
-
   const getCourseName = () => {
 
   };
@@ -78,7 +77,6 @@ function Courses() {
             if (response.status === 201) { // Check if the response status is successful
               // nav(`/course/${course.title}`); // Redirect to the course page
               toast.success('You have successfully enrolled in the course contact us to display all matrials!'); // Display a success message using toast
-
             }
             if (response.status === 400) { // Check if the response status is successful
               // nav(`/course/${course.title}`); // Redirect to the course page
@@ -110,13 +108,6 @@ function Courses() {
   }, []);
 
 
-
-
-
-
-
-
-
   useEffect(() => {
     getCourseName();
   });
@@ -140,13 +131,12 @@ function Courses() {
             }
                     </h6>
                   <div className=' d-flex  '>
-                    <span className=' '>{course.title} {t('EGP')}</span>
+                    <span className=''>{course.title} {t('EGP')}</span>
                     <p className='px-3 text-decoration-line-through'>{course.price} {t('EGP')}</p>
 
                   </div>
 
-
-                  <button onClick={() => handellerEnroll(course)} className="w-100 btn-submit btn px-5">
+                  <button onClick={() => handellerEnroll(course)} className={`w-100 btn-submit btn  px-5`}>
                     {t("EnrollNow")}
                   </button>
                 </div>

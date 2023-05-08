@@ -13,9 +13,10 @@ function CourseDetails() {
   const dispatch = useDispatch()
     const {name}=useParams();
    console.log(lessons.lessons);
+   const course=lessons.lessons;
   return (
     <>
-       <CommonSection title={name} img={`${courses}`} />
+       <CommonSection title={course.courseName} img={`${courses}`} />
        <Container className='py-5 lessons'>
 
         {lessons && (lessons.lessons&&lessons.lessons.lessons)?lessons.lessons.lessons.map((el,i)=>(

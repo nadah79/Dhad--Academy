@@ -20,14 +20,9 @@ const getALLcontact = ()=>async(dispatch)=>{
       }
       
     })).catch((er)=>console.log(er))
-    
     }
 
-
-
-
     const registrationaction = (body)=>async(dispatch)=>{
-
       console.log(body)
       try {
         
@@ -47,13 +42,12 @@ const getALLcontact = ()=>async(dispatch)=>{
         
       }
         // const {body} = data
-
         // if(body.getContact){
       
         //   dispatch({type:'getAllTeacher',payload:body.getContact})
         // }
         // else{
-        //   // console.log(message   )
+        //   // console.log(message )
         // }
         
       
