@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 function Register() {
   const [t] = useTranslation();
   const loginSucceful = useSelector((state) => state.users)
-
+console.log(loginSucceful,"ssssss")
   const dispatch = useDispatch()
   const [Show, setShowImage] = useState(null);
   const [name, setName] = useState('');
@@ -15,12 +15,17 @@ function Register() {
   const [password, setPassword] = useState('');
   const [conpassword, setconPassword] = useState('');
   const [image, setImage] = useState(null);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsgAR, setErrorMsgAR] = useState("");
   const handleSubmit = async (event) => {
 
 
     event.preventDefault();
     if (password != conpassword) {
       console.log("object");
+      setErrorMsg("Password and Confirm password must be the same")
+      setErrorMsgAR("كلمة المرور يجب ان تتطابق")
+      return ;
     }
     const formData = new FormData();
     formData.append('image', image);
@@ -68,12 +73,12 @@ function Register() {
                 <label className="px-2 opacity-75"  htmlFor="image">{t('Image')}</label>
                 <input type="file" id="image" className='form-control' onChange={handleImageChange} accept="image/*" required />
               </div>
-              <img src={Show} alt="" />
+              {/* <img src={Show} alt="" className='w-50' /> */}
               <div className="pt-4 col-12">
                 <button type="submit" className="w-100 btn-submit btn px-5">{t('Register')}</button>
                 <p>{loginSucceful.registrationfail ? loginSucceful.registrationfail : ""}</p>
                 <p>{loginSucceful.registration ? loginSucceful.registration : ""}</p>
-
+                <p>{errorMsg}</p>
               </div>
             </div>
 

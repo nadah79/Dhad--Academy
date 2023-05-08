@@ -107,7 +107,11 @@ function Contacts() {
           </div>
             </div>
           </div>
-             )):<div>no message</div>}
+             )):
+             <div className='text-center py-2'>
+             No messages
+             </div>
+             }
     </Container>
     </>
   )

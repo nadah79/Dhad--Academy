@@ -14,7 +14,6 @@ function Login() {
 
 
     const loginSucceful = useSelector((state)=>state.users)
-
   const nav = useNavigate()
 
   const [email, setEmail] = useState('');
@@ -44,7 +43,6 @@ const handleSubmitloggin= async(event) => {
     console.log(data)
     if(data.statuscode==200){
       localStorage.setItem("token",JSON.stringify( data.body))  
-
       nav("/home")
       seterror('')
 
@@ -54,8 +52,6 @@ const handleSubmitloggin= async(event) => {
     }
   }
     ).catch(el=>  seterror("an error occured please try again later"))
-  
-  
   
   
   }

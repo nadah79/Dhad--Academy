@@ -310,6 +310,7 @@ const AddCourses = () => {
     <>
       <h3>Courses</h3>
       <div className='py-2 instructors'>
+      <span className='mx-3'>Total: {courses.length}</span>
      <button className={`btn mx-1 ${showAdd ? "":"active" }`}  onClick={All}>All</button>
      <button className={`btn mx-1 ${showAdd ? "active":"" }`} onClick={Add}>Add and Update</button>
      </div>  

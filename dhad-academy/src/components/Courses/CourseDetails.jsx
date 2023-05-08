@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import "./courses.css"
 import { apihttp } from '../../api/api';
+import i18n from 'i18next';
+
 function CourseDetails() {
   const [t] = useTranslation();
   const lessons  = useSelector((state) => state.teacher)
@@ -16,7 +18,11 @@ function CourseDetails() {
    const course=lessons.lessons;
   return (
     <>
-       <CommonSection title={course.courseName} img={`${courses}`} />
+       <CommonSection 
+       title={
+        i18n.language=="en"? course.courseName :course.courseNameAR
+      }
+       img={`${courses}`} />
        <Container className='py-5 lessons'>
 
         {lessons && (lessons.lessons&&lessons.lessons.lessons)?lessons.lessons.lessons.map((el,i)=>(

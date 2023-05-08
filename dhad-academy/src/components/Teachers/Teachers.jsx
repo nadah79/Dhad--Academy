@@ -57,10 +57,13 @@ function Teachers() {
         </div>
         <Container className='d-flex justify-content-between align-items-center'>
         <div>
-        <h2 className='white fs-1 fw-bold'>Be part of us</h2>
-        <p className='white fs-5 fw-bold'>Become a Instructor</p>
+        <h2 className='white fs-1 fw-bold'>{t('BePartOfUs')}</h2>
+        <p className='white fs-5 fw-bold'>{t('BecomeInstructor')}</p>
         </div>
-        <button className='btn btn-apply '> Apply</button>
+        <a href="https://forms.gle/WKcN9ViYeowzLyDf7" target="_blank" rel="noreferrer">
+        <button className='btn btn-apply border-0 '> {t('Apply')}
+        </button>
+        </a>
         </Container>
         
       </section>

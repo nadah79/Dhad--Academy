@@ -214,6 +214,7 @@ const Instructors = () => {
     <>
     <h3>Users</h3>
      <div className='py-2 instructors'>
+     <span className='mx-3'>Total: {users.length}</span>
      <button className={`btn mx-1 ${show==="all"? "active":"" }`}  onClick={()=>sellectCategory("all")}>All</button>
      <button className={`btn mx-1 ${show==="instructor"? "active":"" }`}  onClick={()=>sellectCategory("instructor")}>Instructors</button>
      <button className={`btn mx-1 ${show==="user" ?"active":"" }`}  onClick={()=>sellectCategory("user")}>Users</button>
@@ -314,11 +315,11 @@ const Instructors = () => {
 
             <div key={user._id} className="card my-2">
               <div className="card-body d-flex row align-items-center">
-                <div className='col-12 col-lg-6  d-flex'>
-                  {/* <i className=" w-50 fa-regular fa-circle-user fa-2xl"></i> */}
-                  <img src={`${apihttp}${user.image}`} alt="img" className='mx-3 rounded-circle' width={70} height={70} />
-                  {/* <span>{user.usernam}</span> */}
-                  <div className=''>
+                <div className='col-12 col-lg-6  d-flex row'>
+                <div className='col-3 d-flex justify-content-center'>
+                  <img src={`${apihttp}${user.image}`} alt="img" className='mx-2 rounded-circle' width={70} height={70} />
+                  </div>
+                  <div className='col-9'>
                   <p>{user.username}</p>
                   <p>{user.email}</p>
                 </div>
@@ -328,8 +329,8 @@ const Instructors = () => {
               
 
                 <div className='col-7 col-lg-4 d-flex justify-content-evenly'>
-                  <button onClick={() => handleSelectUser(user)} className='btn border-0 text-decoration-underline fs-5' >Edit</button>
-                  <button onClick={() => handleDeleteUser(user._id)} className='btn border-0 text-decoration-underline fs-5'>Delete</button>
+                  <button onClick={() => handleSelectUser(user)} className='btn border-0 fs-5' ><i className="fa-solid fa-pen"></i></button>
+                  <button onClick={() => handleDeleteUser(user._id)} className='btn border-0 fs-5'><i className="fa-solid fa-trash"></i></button>
                 </div>
               </div>
             </div>

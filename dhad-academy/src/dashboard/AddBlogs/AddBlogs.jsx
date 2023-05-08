@@ -110,11 +110,12 @@ const AddBlogs = () => {
     <>
     <h3>Blogs</h3>
      <div className='py-2 instructors'>
+     <span className='mx-3'>Total: {blogs.length}</span>
      <button className={`btn mx-1 ${showAdd ? "":"active" }`}  onClick={All}>All</button>
      <button className={`btn mx-1 ${showAdd ? "active":"" }`} onClick={Add}>Add</button>
      </div>
       {showAdd?
-      <div className='py-2 row'>
+      <div className='py-4 row'>
             <div className='col-12 col-lg-6 m-auto'>
 
       <form onSubmit={ handleAddBlog}>
@@ -202,7 +203,8 @@ const AddBlogs = () => {
       )}
 
       </div>
-: <div className='row d-flex justify-content-center justify-content-md-start fs-5'>
+: <div className='row d-flex justify-content-center justify-content-md-start fs-5 py-4'>
+
 {blogs.map((blog) => (
         <div className="col-12 col-lg-6  mb-3" key={blog._id}>
          <div className='card h-100'>

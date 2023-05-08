@@ -90,22 +90,26 @@ const settings = {
   autoplaySpeed: 2000 // set autoplay speed to 4 seconds
 };
 return (
-  <div>
-<Container className='py-5'>
+  <>
+    <h3>Slider</h3>
+    <div className='p-3 row'>
     <h5>File Uploader</h5>
+    <div className=' w-50 m-auto'>
     <Dropzone onDrop={handleUpload}>
       {({ getRootProps, getInputProps }) => (
-        <div {...getRootProps()} style={{ border: '1px solid black' }} className="form-group text-center">
-          <input {...getInputProps()} type="file"
-            className="form-control" />
+        <div {...getRootProps()} style={{ border: '1px solid black' }} className=" text-center">
+          <input {...getInputProps()} type="file" />
           <label htmlFor="image">Select Image</label>
         </div>
       )}
     </Dropzone>
-    </Container>
+    </div>
+    
+    </div>
 
-    <Container className='py-5'>
+    <div className='p-3 my-3 row'>
     <h5>Files</h5>
+    <div>
     <ul>
       {files.map((file) => (
         <li key={file._id} className='py-2'>
@@ -116,7 +120,8 @@ return (
         </li>
       ))}
     </ul>
-        </Container>
+    </div>
+        </div>
         <Slider {...settings}>
     {files.map((file) => (
       <div key={file._id}>
@@ -124,7 +129,7 @@ return (
       </div>
     ))}
   </Slider>
-  </div>
+  </>
 );
 }
 

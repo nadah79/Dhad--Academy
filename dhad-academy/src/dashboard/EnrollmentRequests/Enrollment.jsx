@@ -73,6 +73,7 @@ function Enrollment() {
           <div className='py-2'>
           <span>Total requests: {enrollmentRequests ?enrollmentRequests.length:""}</span>
       <ToastContainer />
+      {enrollmentRequests.length?
       <div className='table-responsive'>
       <table className="table align-middle text-center">
         <thead >
@@ -95,14 +96,18 @@ function Enrollment() {
               <td>{enrollmentRequest.status}</td>
 
               <td>
-                <button className="btn btn-accecpt mx-2" onClick={() => handleAccept(enrollmentRequest)}>Accept</button>
-                <button className="btn btn-delete " onClick={() => handleReject(enrollmentRequest)}>Reject</button>
+                <button className="btn btn-accecpt m-2" onClick={() => handleAccept(enrollmentRequest)}>Accept</button>
+                <button className="btn btn-delete m-2" onClick={() => handleReject(enrollmentRequest)}>Reject</button>
               </td>
             </tr>
           )) : "loading..."}
         </tbody>
       </table>
+      </div>:
+       <div className='text-center py-2'>
+        <p>No requests</p>
       </div>
+      }
      
       </div>
     </>
