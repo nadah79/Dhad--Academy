@@ -111,7 +111,7 @@ class users {
     const { id } = req.params;
     console.log(id);
 
-    const { usernam, email, password, isAdmin } = req.body;
+    const { username, email, password, isAdmin } = req.body;
 
     try {
       const user = await userModel.User.findById({ _id: id });
@@ -135,7 +135,7 @@ class users {
             if (err) {
               const updateuser = await userModel.User.findByIdAndUpdate(
                 { _id: id },
-                { usernam: usernam, email: email, isAdmin: isAdmin },
+                { username: username, email: email, isAdmin: isAdmin },
                 { new: true }
               );
               response(
@@ -158,13 +158,13 @@ class users {
         );
         const updateuser = await userModel.User.findByIdAndUpdate(
           { _id: id },
-          { usernam: usernam, email: email, image: fileName, isAdmin: isAdmin },
+          { username: username, email: email, image: fileName, isAdmin: isAdmin },
           { new: true }
         );
       } else {
         const updateuser = await userModel.User.findByIdAndUpdate(
           { _id: id },
-          { usernam: usernam, email: email, isAdmin: isAdmin },
+          { username: username, email: email, isAdmin: isAdmin },
           { new: true }
         ).select({ password: 0 });
       }

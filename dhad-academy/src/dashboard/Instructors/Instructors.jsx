@@ -6,7 +6,7 @@ import { apihttp } from "../../api/api"
 import { useNavigate } from 'react-router-dom';
 const Instructors = () => {
   const [users, setUsers] = useState([]);
-  const [usernam, setUsernam] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isAdmin, setIsAdmin] = useState('user');
@@ -42,7 +42,7 @@ const Instructors = () => {
   };
 
   const handleUsernamChange = (event) => {
-    setUsernam(event.target.value);
+    setUsername(event.target.value);
   };
 
   const handleEmailChange = (event) => {
@@ -68,7 +68,7 @@ const Instructors = () => {
   const handleCreateUser = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append('name', usernam);
+    formData.append('username', username);
     formData.append('email', email);
     formData.append('password', password);
     formData.append('isAdmin', isAdmin);
@@ -88,7 +88,7 @@ const Instructors = () => {
           }
         });
         getUsers(category);
-        setUsernam('');
+        setUsername('');
         setEmail('');
         setPassword('');
         setIsAdmin('user');
@@ -109,7 +109,7 @@ const Instructors = () => {
   const handleSelectUser = (user) => {
     window.scrollTo(0, 0);
     setSelectedUser(user);
-    setUsernam(user.usernam);
+    setUsername(user.username);
     setEmail(user.email);
     setPassword(user.password);
     setIsAdmin(user.isAdmin);
@@ -119,7 +119,7 @@ const Instructors = () => {
     event.preventDefault();
  
     const formData = new FormData();
-    formData.append('usernam', usernam);
+    formData.append('username', username);
     formData.append('email', email);
     formData.append('password', password);
     formData.append('isAdmin', isAdmin);
@@ -130,7 +130,7 @@ const Instructors = () => {
     getUsers(category);
     setSelectedUser(null);
     console.log(selectedUser,"ssssssssss")
-    setUsernam('');
+    setUsername('');
     setEmail('');
     setPassword('');
     setIsAdmin('user');
@@ -138,7 +138,6 @@ const Instructors = () => {
     setImage(null);
     setImg(null)
     setUploadProgress(null);
-
 
     if (user) {
       try {
@@ -160,7 +159,6 @@ const Instructors = () => {
         }
         );
   
-
       } catch (error) {
         console.log('Error updating user:', error);
       }
@@ -229,7 +227,7 @@ const Instructors = () => {
       <div className='row'>
                 <div className="col-12 form-group ">
                   <label className="px-2 opacity-75">Username</label>
-                  <input className="form-control" type="text" value={usernam} onChange={handleUsernamChange} />
+                  <input className="form-control" type="text" value={username} onChange={handleUsernamChange} />
                 </div>
                 <div className="col-12 form-group ">
                   <label className="px-2 opacity-75">Email</label>
@@ -273,7 +271,7 @@ const Instructors = () => {
                   <div className='row'>
                     <div className="col-12 form-group ">
                       <label className="px-2 opacity-75">Username</label>
-                      <input className="form-control" type="text" value={usernam} onChange={handleUsernamChange} />
+                      <input className="form-control" type="text" value={username} onChange={handleUsernamChange} />
                     </div>
                     <div className="col-12 form-group ">
                       <label className="px-2 opacity-75">Email</label>

@@ -6,6 +6,7 @@ import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import "./courses.css"
+import { apihttp } from '../../api/api';
 function CourseDetails() {
   const [t] = useTranslation();
   const lessons  = useSelector((state) => state.teacher)
@@ -25,7 +26,7 @@ function CourseDetails() {
      <a href={el?.video} target="_blank" rel="noopener noreferrer">{el.name} {t("Video")}</a>      
      </p>
      <p>
-     <a href={`http://localhost:5000/${el?.pdf}`} target="_blank" rel="noopener noreferrer">{el?.name} {t("PDF")}</a>      
+     <a href={`${apihttp}/${el?.pdf}`} target="_blank" rel="noopener noreferrer">{el?.name} {t("PDF")}</a>      
      </p>
 
      <p>

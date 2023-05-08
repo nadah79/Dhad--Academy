@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { apihttp } from '../../api/api';
 import { useTranslation } from 'react-i18next';
-
+import i18n from 'i18next';
 
 function BlogDetails() {
   const [t] = useTranslation();
@@ -98,7 +98,9 @@ console.log(id);
       <Container className="py-5">
         <Row className="d-flex justify-content-between">
           <Col sm="12" md="9">
-            <h3>{blogs.title}</h3>
+            <h3> {
+                  i18n.language=="en"? blogs.title :blogs.titleAR
+            }</h3>
           </Col>
           <Col sm="12" md="3" className=" text-md-end">
             {blogs.updatedAt ? (
@@ -108,7 +110,11 @@ console.log(id);
             )}
           </Col>
           <Col>
-            <p>{blogs.description}</p>
+            <p>
+            {
+              i18n.language=="en"? blogs.description :blogs.descriptionAR
+            }
+            </p>
           </Col>
         </Row>
         <hr className=" my-3" />

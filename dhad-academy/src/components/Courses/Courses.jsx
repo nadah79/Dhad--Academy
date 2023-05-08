@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 function Courses() {
   const [t] = useTranslation();
 
@@ -133,7 +134,11 @@ function Courses() {
                 <img src={`${apihttp}${course.image}`} height={250} className="rounded-img-top " alt="..." />
                 <div className="card-body d-flex flex-column justify-content-between">
                   <p className="card-title"><i className="fa-regular fa-clock pe-1"></i>{course.hours} {t('Hours')}</p>
-                  <h6 className="card-text">{course.courseName} </h6>
+                  <h6 className="card-text">
+                  {
+              i18n.language=="en"? course.courseName :course.courseNameAR
+            }
+                    </h6>
                   <div className=' d-flex  '>
                     <span className=' '>{course.title} {t('EGP')}</span>
                     <p className='px-3 text-decoration-line-through'>{course.price} {t('EGP')}</p>
