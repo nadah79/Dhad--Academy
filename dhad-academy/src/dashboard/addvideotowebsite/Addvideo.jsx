@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 import { apihttp } from "../../api/api"
 
 function Addvideo() {
+  const user = JSON.parse(localStorage.getItem("token")) ? JSON.parse(localStorage.getItem("token")) : null
 
   const [file, setFile] = useState(null);
   const [title, settitle] = useState('');
@@ -42,7 +43,11 @@ function Addvideo() {
 
     if (videoId) {
       // If we have a video ID, update the existing video
-      await axios.put(`${apihttp}video/updateVideo/${videoId}`, formData, config)
+      await axios.put(`${apihttp}video/updateVideo/${videoId}`, formData, {config,    headers: {
+        // 'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${user.token}`,
+
+      }})
         .then(response => {
           console.log(response);
         })
@@ -51,7 +56,11 @@ function Addvideo() {
         });
     } else {
       // Otherwise, add a new video
-      await axios.post(`${apihttp}video/addVideo`, formData, config)
+      await axios.post(`${apihttp}video/addVideo`, formData, {config,    headers: {
+        // 'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${user.token}`,
+
+      }})
         .then(response => {
           console.log(response.status);
           setVideoId(response.data._id);
@@ -68,7 +77,13 @@ function Addvideo() {
   async function handleDelete() {
 
 
-    await axios.delete(`${apihttp}video/deleteVideo`)
+    await axios.delete(`${apihttp}video/deleteVideo`,{
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${user.token}`,
+
+      }
+    })
       .then(response => {
         console.log(response);
         setFile(null);

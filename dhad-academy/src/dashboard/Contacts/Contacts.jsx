@@ -66,7 +66,12 @@ function Contacts() {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await axios.get(`${apihttp}contact`);
+        const response = await axios.get(`${apihttp}contact`,   {
+          headers: {
+           
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
         if(response.data.statuscode==200){
         setContacts(response.data.body.getContact);
         }

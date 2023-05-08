@@ -50,14 +50,14 @@ var upload = multer({ storage: storage }).single('image');
 // ]);
 
 // Example route that uploads two images
-router.post('/addblog', upload
+router.post('/addblog',auth.isAdmin, upload
 ,blog.postblog);
 
 router.post('/comment/:id',auth.isUser, blog.comment);
 router.get('/', blog.getblog);
 router.get('/:id', blog.getoneblog);
 
-router.delete('/:id', blog.deleteplog);
+router.delete('/:id',auth.isAdmin, blog.deleteplog);
 
 
 module.exports = router;

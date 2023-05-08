@@ -80,7 +80,7 @@ const Instructors = () => {
         await axios.post(`${apihttp}userRegistration`, formData, {
           headers: {
             // 'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${user?.token}`,
 
           }, onUploadProgress: (progressEvent) => {
             const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
@@ -147,7 +147,7 @@ const Instructors = () => {
      {
        headers: {
       
-         Authorization: `Bearer ${user.token}`,
+         Authorization: `Bearer ${user?.token}`,
 
        }
        
@@ -178,7 +178,7 @@ const Instructors = () => {
         {
           headers: {
             // 'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${user?.token}`,
 
           }
           

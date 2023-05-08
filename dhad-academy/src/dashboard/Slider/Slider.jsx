@@ -10,6 +10,7 @@ import { Container } from 'react-bootstrap';
 function SliderAdmin() {
   const [updatedFile, setUpdatedFile] = useState(null);
   const [files, setFiles] = useState([]);
+  const user = JSON.parse(localStorage.getItem("token")) ? JSON.parse(localStorage.getItem("token")) : null
 
 useEffect(() => {
   fetchFiles();
@@ -29,7 +30,11 @@ const handleUpload = async (acceptedFiles) => {
   try {
     const formData = new FormData();
     formData.append('image', acceptedFiles[0]);
-    const response = await axios.post(`${apihttp}slider`, formData);
+    const response = await axios.post(`${apihttp}slider`, formData,    {headers: {
+      // 'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${user?.token}`,
+
+    }});
     setFiles((prevFiles) => [...prevFiles, response.data]);
   } catch (error) {
     console.error(error);

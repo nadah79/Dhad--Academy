@@ -77,8 +77,8 @@ function validateaddcourse (obj){
 
 const schema = joi.object({
 coursesDepartment : joi.string().trim().required(),
-courseName :joi.string().trim().min(15).required(),
-courseNameAR :joi.string().trim().min(15).required(),
+courseName :joi.string().trim().required(),
+courseNameAR :joi.string().trim().required(),
 offer :joi.string().trim().required(),
 price :joi.string().trim().required(),
 hours :joi.string().trim().required(),

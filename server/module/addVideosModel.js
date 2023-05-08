@@ -5,15 +5,14 @@ const joi = require('joi')
 const addvideose = mongoose.Schema({
     title: {
         type:String,
-        required:[true,"enter your name please"],
+     
         trim: true,
-        minLength:10,
-        maxLength:200
+    
         
     },
     description: {
         type: String,
-        required:[true,"the discription is required field"],
+    
         trim: true,
         lowercase: true
     },
@@ -29,7 +28,7 @@ const addvideose = mongoose.Schema({
 function validateAddvideo (obj){
 
 const schema = joi.object({
-title : joi.string().trim().min(3).max(200).required(),
+title : joi.string().trim().required(),
 description :joi.string().trim().min(3).required(),
 
 });

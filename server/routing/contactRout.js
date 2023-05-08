@@ -7,10 +7,10 @@ const contact = require('../controller/contactController')
 
 
 
-router.get('/',contact.getContactMessages)
+router.get('/',auth.isAdmin,contact.getContactMessages)
 router.post('/sendMessage',contact.contactMessages)
-router.delete('/deleteMessage/:id',contact.DeleteContactMessages)
-router.delete('/deleteMessage',contact.Deleteall)
+router.delete('/deleteMessage/:id',auth.isAdmin,contact.DeleteContactMessages)
+router.delete('/deleteMessage',auth.isAdmin,contact.Deleteall)
 
 
 
