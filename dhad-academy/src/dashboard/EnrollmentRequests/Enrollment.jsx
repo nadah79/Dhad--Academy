@@ -5,7 +5,10 @@ import { apihttp } from "../../api/api"
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 function Enrollment() {
+  const [t] = useTranslation();
   const [enrollmentRequests, setEnrollmentRequests] = useState([]);
   const user = JSON.parse(localStorage.getItem("token")) ? JSON.parse(localStorage.getItem("token")) : null
 
@@ -68,22 +71,22 @@ function Enrollment() {
 
   return (
     <>
-    <h3>Enrollment Requests</h3>
+    <h3>{t('Requestes')}</h3>
           {/* <h1 className="mb-4"></h1> */}
           <div className='py-2'>
-          <span>Total requests: {enrollmentRequests ?enrollmentRequests.length:""}</span>
+          <span>{t('Total')} : {enrollmentRequests ?enrollmentRequests.length:""}</span>
       <ToastContainer />
       {enrollmentRequests.length?
-      <div className='table-responsive'>
+      <div className='table-responsive py-5'>
       <table className="table align-middle text-center">
         <thead >
-          <tr>
-            <th>User Name</th>
-            <th>Image</th>
-            <th>email</th>
-            <th>Course</th>
-            <th>Status</th>
-            <th>Actions</th>
+          <tr className='align-middle'>
+            <th>{t('UserName')}</th>
+            <th>{t('Image')}</th>
+            <th>{t('Email')}</th>
+            <th>{t('Course')}</th>
+            <th>{t('Status')}</th>
+            <th>{t('Actions')}</th>
           </tr>
         </thead>
         <tbody>
@@ -105,7 +108,7 @@ function Enrollment() {
       </table>
       </div>:
        <div className='text-center py-2'>
-        <p>No requests</p>
+        <p>{t('NoRequests')}</p>
       </div>
       }
      

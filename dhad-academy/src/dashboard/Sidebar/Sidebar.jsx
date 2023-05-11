@@ -12,8 +12,10 @@ import {
 } from 'cdbreact';
 import { Container } from 'react-bootstrap';
 import RoutesDashboard from '../Routes/RoutesDashboard';
-
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 function Sidebar() {
+    const [t] = useTranslation();
     const nav = useNavigate()
     const hadelerLogout = () => {
       console.log("object");
@@ -36,41 +38,41 @@ function Sidebar() {
                        
                             <NavLink exact="true" to="admin/instructors" activeclassname="activeClicked">
                                 <CDBSidebarMenuItem className='active-item' icon={"fa-solid fa-user-group"}>
-                                  Users
+                                {t('Users')}
                                 </CDBSidebarMenuItem>
                             </NavLink>
                            
                             <NavLink exact="true" to="admin/requestes" activeclassname="activeClicked">
                                 <CDBSidebarMenuItem className='active-item' icon="fa-solid fa-file-circle-question">
-                                Requestes
+                                {t('Requestes')}
                                 </CDBSidebarMenuItem>
                             </NavLink>
                            
                             <NavLink exact="true" to="addCourses" activeclassname="activeClicked">
                                 <CDBSidebarMenuItem className='active-item' icon="fa-solid fa-book">
-                                 Courses
+                                 {t('Courses')}
                                 </CDBSidebarMenuItem>
                             </NavLink>
                             <NavLink exact="true" to="Blogs" activeclassname="activeClicked">
                                 <CDBSidebarMenuItem className='active-item' icon="fa-solid fa-envelopes-bulk">
-                                    Blogs
+                                    {t('Blogs')}
                                 </CDBSidebarMenuItem>
                             </NavLink>
                             <NavLink exact="true" to="contacts" activeclassname="activeClicked"
                             >
                                 <CDBSidebarMenuItem
                                     icon="fa-solid fa-message" >
-                                    Contacts
+                                    {t('Contacts')}
                                 </CDBSidebarMenuItem>
                                 </NavLink>
                                 <NavLink exact="true" to="admin/addvideo" activeclassname="activeClicked">
                                 <CDBSidebarMenuItem className='active-item' icon={"fa-solid fa-video"}>
-                                    Add video
+                                    {t('AddVideo')}
                                 </CDBSidebarMenuItem>
                             </NavLink>
                             <NavLink exact="true" to="admin/slider" activeclassname="activeClicked">
                                 <CDBSidebarMenuItem className='active-item' icon={"fa-solid fa-images"}>
-                                    Slider
+                                     {t('Slider')}
                                 </CDBSidebarMenuItem>
                             </NavLink>
                         </CDBSidebarMenu>
@@ -78,8 +80,7 @@ function Sidebar() {
 
                     <CDBSidebarFooter className=' text-center '>
                         <div className='px-1 py-3 cursor-pointer' onClick={hadelerLogout}>
-                            Logout
-
+                        {t('Logout')}
                         </div>
                     </CDBSidebarFooter>
                 </CDBSidebar>

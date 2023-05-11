@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import YouTube from 'react-youtube'
 import axios from 'axios';
-import { Container, Row, Col, ListGroup, Button, Form } from 'react-bootstrap';
+import {  Form } from 'react-bootstrap';
 import { apihttp } from "../../api/api"
 import { useNavigate } from 'react-router';
-
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 const AddCourses = () => {
+  const [t] = useTranslation();
+
   const [courses, setCourses] = useState([]);
   const [addcourse, setaddcourse] = useState(false);
   const [idcourse, setidcourse] = useState("");
@@ -120,7 +123,6 @@ const AddCourses = () => {
         });
         console.log(response.data);
 
-
         setCourses((prevCourses) => [...prevCourses, response.data]);
       }
       setFormValues({
@@ -133,6 +135,7 @@ const AddCourses = () => {
         price: '',
         hours: '',
       });
+      All();
     } catch (error) {
       console.error(error);
     }
@@ -308,22 +311,35 @@ const AddCourses = () => {
   return (
 
     <>
-      <h3>Courses</h3>
-      <div className='py-2 instructors'>
-      <span className='mx-3'>Total: {courses.length}</span>
-     <button className={`btn mx-1 ${showAdd ? "":"active" }`}  onClick={All}>All</button>
-     <button className={`btn mx-1 ${showAdd ? "active":"" }`} onClick={Add}>Add and Update</button>
+      <h3>{t('Courses')}</h3>
+      <div className='py-2 instructors d-flex justify-content-between align-items-center'>
+      <div>
+      <span className='mx-3'>{t('Total')}: {courses.length}</span>
+     <button className={`btn mx-1 ${showAdd ? "":"active" }`}  onClick={All}>{t('All')}</button>
+      </div>
+     <button className={`btn mx-1 ${showAdd ? "active":"" }`} onClick={Add}>
+     {selectedCourse ?
+      t('Update'):t('Add')}</button>
      </div>  
           {/* <h1 className="my-4">Course Manager</h1> */}
     
           
         {showAdd?
           <div className='py-2 row'>
-              <h5 className='py-3 text-decoration-underline'>{selectedCourse ? `Edit Course: ${selectedCourse.courseName}` : 'Create Course'}</h5>
+                {/* <h5 className='py-3 text-decoration-underline'>{selectedCourse ?  `${t('EditCourse')}
+              ${i18n.language=="en"? selectedCourse.courseName :selectedCourse.courseNameAR}` : t('CreateCourse')}</h5>
+            */}
+            {selectedCourse ? <div className='py-3 '>
+              <h5>{t('EditCourse')} 
+              {i18n.language=="en"? selectedCourse.courseName : selectedCourse.courseNameAR}</h5>
+              <div className='hr'>
+              </div>
+            </div>
+          :""}
               <div className='col-12 col-lg-6 m-auto'>
           <Form onSubmit={handleFormSubmit}>
           <Form.Group controlId="formCourseName" className='pb-2'>
-              <Form.Label>Course Name:</Form.Label>
+              <Form.Label>{t('CourseName')} :</Form.Label>
               <Form.Control
                 type="text"
                 name="courseName"
@@ -332,7 +348,7 @@ const AddCourses = () => {
               />
             </Form.Group>
             <Form.Group controlId="formCourseNameAR" className='pb-2'>
-              <Form.Label>Course Name (AR):</Form.Label>
+              <Form.Label>{t('CourseNameAR')} :</Form.Label>
               <Form.Control
                 type="text"
                 name="courseNameAR"
@@ -342,24 +358,24 @@ const AddCourses = () => {
             </Form.Group>
 
             <Form.Group controlId="formCoursesDepartment" className='pb-2'>
-              <Form.Label>Course Department:</Form.Label>
+              <Form.Label>{t('CourseDepartment')} :</Form.Label>
               <Form.Control
                 as="select"
                 name="coursesDepartment"
                 value={formValues.coursesDepartment}
                 onChange={handleFormChange}
               >
-                <option value="">-- Select Department --</option>
-                <option value="Arabic">Arabic</option>
-                <option value="Quran and Readings">Quran and Readings</option>
-                <option value="Islamic Studies">Islamic Studies</option>
-                <option value="Qualifying Courses">Qualifying Courses</option>
-                <option value="Crafts and Skills">Crafts and Skills</option>
-                <option value="Field Tourism">Field Tourism</option>
+                <option value="">-- {t('SelectDepartment')} --</option>
+                <option value="Arabic">{t('Arabic')}</option>
+                <option value="Quran and Readings">{t('QuranAndReadings')}</option>
+                <option value="Islamic Studies">{t('IslamicStudies')}</option>
+                <option value="Qualifying Courses">{t('QualifyingCourses')}</option>
+                <option value="Crafts and Skills">{t('CraftsAndSkills')}</option>
+                <option value="Field Tourism">{t('FieldTrips')}</option>
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="formDescription" className='pb-2'>
-              <Form.Label>price:</Form.Label>
+              <Form.Label>{t('Price')} :</Form.Label>
               <Form.Control
                 type="text"
                 name="price"
@@ -368,7 +384,7 @@ const AddCourses = () => {
               />
               </Form.Group>
               <Form.Group controlId="offer" className='pb-2'>
-              <Form.Label>Price after discount:</Form.Label>
+              <Form.Label>{t('PriceAfterDiscount')} :</Form.Label>
               <Form.Control
                 type="text"
                 name="offer"
@@ -377,7 +393,7 @@ const AddCourses = () => {
               />
             </Form.Group>
             <Form.Group controlId="formHours" className='pb-2'>
-              <Form.Label>hourse:</Form.Label>
+              <Form.Label>{t('Hour')} :</Form.Label>
               <Form.Control
                 type="text"
                 name="hours"
@@ -386,17 +402,17 @@ const AddCourses = () => {
               />
             </Form.Group>
             <Form.Group controlId="formImage" className='pb-2'>
-              <Form.Label>Image:</Form.Label>
+              <Form.Label>{t('Image')} :</Form.Label>
               <Form.Control type="file" name="image" onChange={handleFileChange} />
             </Form.Group>
             <div className="pt-2 text-center ">
-              <Button type="submit" className=' mx-2  btn-submit border-0 px-4 my-2'>
-                {selectedCourse ? 'Update Course' : 'Create Course'}
-              </Button>
+              <button type="submit" className=' mx-2 btn  btn-submit border-0 px-4 my-2'>
+                {selectedCourse ? t("Update") : t('CreateCourse')}
+              </button>
               {selectedCourse && (
-               <Button type=" button" onClick={CancelUpdate} className='mx-2 btn-submit border-0 my-2 px-5'>
-               Cancel
-               </Button>
+               <button type=" button" onClick={CancelUpdate} className='mx-2 btn btn-submit border-0 my-2 px-4'>
+               {t("Cancel")}
+               </button>
 )}
             </div>
            
@@ -413,7 +429,7 @@ const AddCourses = () => {
               <h5 className=' text-center'>{'Add Lesson'}</h5>
               <Form onSubmit={handleLessonFormSubmit} >
                 <Form.Group controlId="formLessonName" className='pb-2'>
-                  <Form.Label>Name</Form.Label>
+                  <Form.Label>{t('Title')}</Form.Label>
                   <Form.Control
                     type="text"
                     name="name"
@@ -422,7 +438,7 @@ const AddCourses = () => {
                   />
                 </Form.Group>
                 <Form.Group controlId="formLessonDescription" className='pb-2'>
-                  <Form.Label>Meeting Link</Form.Label>
+                  <Form.Label>{t('MeetingLink')}</Form.Label>
                   <Form.Control
                     type="text"
                     name="meeting"
@@ -431,21 +447,21 @@ const AddCourses = () => {
                   />
                 </Form.Group>
                 <Form.Group controlId="formLessonPdf" className='pb-2'>
-                  <Form.Label>pdf</Form.Label>
+                  <Form.Label>{t('PDF')}</Form.Label>
                   <Form.Control type="file" name="pdf" onChange={handleLessonFileChange} />
                 </Form.Group>
 
                 <Form.Group controlId="formLessonVideo" className='pb-2'>
-                  <Form.Label>Video Link</Form.Label>
+                  <Form.Label>{t('VideoLink')}</Form.Label>
                   <Form.Control type="text" name="video" onChange={handleLessonFormChange} />
                 </Form.Group>
                 <div className="pt-2 text-center ">
-                <Button className='mx-2 btn-submit border-0 px-4' type="submit">
-                  Add Lesson
-                </Button>
-                <Button className='mx-2 btn-submit border-0 px-5' onClick={() => setaddcourse(false)}>
-                Cancel
-              </Button>
+                <button className='mx-2 btn-submit btn border-0 px-4' type="submit">
+                {t('AddLesson')}
+                </button>
+                <button className='mx-2 btn-submit btn border-0 px-5' onClick={() => setaddcourse(false)}>
+                {t('Cancel')}
+              </button>
                 </div>
               </Form>
 
@@ -454,7 +470,7 @@ const AddCourses = () => {
           )}
            </div>
                   
-          <div className='py-2 row d-flex justify-content-center justify-content-md-start fs-5'>
+           <div className='row d-flex justify-content-center justify-content-md-start fs-5 py-4'>        
         {courses &&
           courses.map((course) => (
             <div className='col-12 col-md-8 col-lg-6  mb-3' key={course._id} >
@@ -465,29 +481,29 @@ const AddCourses = () => {
   <img src={`${apihttp}${course.image}`} width={"60%"} height={200} alt={course.courseName} />
   </div>
   <div>
-  <p className=' fw-bold'>courseName: <span className=' fw-normal'> {course.courseName}</span></p>
-  <p className=' fw-bold'>courseName (AR): <span className=' fw-normal'> {course.courseNameAR}</span></p>
+  <p className=' fw-bold'>{t('CourseName')} : <span className=' fw-normal'> {course.courseName}</span></p>
+  <p className=' fw-bold'>{t('CourseNameAR')}: <span className=' fw-normal'> {course.courseNameAR}</span></p>
 
-  <p className=' fw-bold'>lessons: <span className=' fw-normal'> {course.lessons ? course.lessons.length : 0}</span> </p>
+  <p className=' fw-bold'>{t('Lessons')}: <span className=' fw-normal'> {course.lessons ? course.lessons.length : 0}</span> </p>
   {course.lessons.length?
-<div className=''>
+<div className=' overflow-auto' style={{maxHeight:"100px"}}>
     <ol>
 {
   course.lessons.map((lesson) => (
     <li key={lesson._id}>
       <div className="">
         <p>{lesson.name}</p>
-        <p><a href={`${apihttp}${lesson.pdf}`}> {lesson.name} PDF </a></p>
-        <p><a href={lesson.video}>{lesson.name} Video</a></p>
-        <p><a href={lesson.video}>{lesson.name} Meeting</a></p>
+        <p><a href={`${apihttp}${lesson.pdf}`}> {t('PDF')} {lesson.name} </a></p>
+        <p><a href={lesson.video}>{t('Video')} {lesson.name}</a></p>
+        <p><a href={lesson.meeting}>{t('Meeting')} {lesson.name}</a></p>
 
         <div className='text-center'>
           {/* <Button variant="info" onClick={() => handleLessonEdit(lesson)}>
             Edit
           </Button>{' '} */}
-          <Button className='mx-2 btn-submit border-0 px-5' onClick={() => handleLessonDelete(lesson)}>
-            Delete {lesson.name}
-          </Button>
+          <button className='mx-2 btn-submit btn border-0 px-5' onClick={() => handleLessonDelete(lesson)}>
+          {t('Delete')} {lesson.name}
+          </button>
         </div>
       </div>
     </li>
@@ -497,22 +513,22 @@ const AddCourses = () => {
 :""
 
 }
-  <p className=' fw-bold'>coursesDepartment: <span className=' fw-normal'> {course.coursesDepartment}</span></p>
-  <p className=' fw-bold'>price: <span className=' fw-normal'> {course.price}</span></p>
-  <p className=' fw-bold'>Discount: <span className=' fw-normal'> {course.offer}</span></p>
-  <p className=' fw-bold'>hours: <span className=' fw-normal'> {course.hours}</span></p>
+  <p className=' fw-bold'>{t('CourseDepartment')} : <span className=' fw-normal'> {course.coursesDepartment}</span></p>
+  <p className=' fw-bold'>{t('Price')} : <span className=' fw-normal'> {course.price}</span></p>
+  <p className=' fw-bold'>{t('PriceAfterDiscount')} : <span className=' fw-normal'> {course.offer}</span></p>
+  <p className=' fw-bold'>{t('Hour')} : <span className=' fw-normal'> {course.hours}</span></p>
   
   </div>
   <div className=' py-3 row d-flex justify-content-center'>
-    <Button className='m-2 btn-submit col-8 col-xl-5  border-0 px-5' onClick={() => handleCourseEdit(course)}>
-      Edit
-    </Button>{' '}
-    <Button className='m-2 btn-submit col-8 col-xl-5  border-0 px-5' onClick={() => handleCourseDelete(course)}>
-      Delete
-    </Button>
-    <Button className='m-2 btn-submit col-8 col-xl-6   border-0 px-5' onClick={() => handleaddlessons(course)}>
-      Add lesson
-    </Button>
+    <button className='m-2 btn btn-submit col-8 col-xl-5  border-0 px-5' onClick={() => handleCourseEdit(course)}>
+    {t('Update')}
+    </button>
+    <button className='m-2 btn btn-submit col-8 col-xl-5  border-0 px-5' onClick={() => handleCourseDelete(course)}>
+    {t('Delete')}
+    </button>
+    <button className='m-2 btn btn-submit col-8 col-xl-6   border-0 px-5' onClick={() => handleaddlessons(course)}>
+    {t('AddLesson')}
+    </button>
   </div>
 </div>
               </div>

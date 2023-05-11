@@ -5,7 +5,7 @@ import RoutesDashboard from '../Routes/RoutesDashboard'
 function Admin() {
   return (
     <>
-    <div className=' ltr'>
+    <div>
     <Sidebar>
     </Sidebar>
     <RoutesDashboard/>

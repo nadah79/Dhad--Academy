@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
 import { apihttp } from "../../api/api"
-
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 function Addvideo() {
-
+  const [t] = useTranslation();
   const [file, setFile] = useState(null);
   const [title, settitle] = useState('');
 
@@ -66,8 +66,6 @@ function Addvideo() {
   }
 
   async function handleDelete() {
-
-
     await axios.delete(`${apihttp}video/deleteVideo`)
       .then(response => {
         console.log(response);
@@ -104,57 +102,50 @@ function Addvideo() {
 
   return (
     <>
-          <h3>Video</h3>
+          <h3>{t('Video')}</h3>
           <div className='py-2 row'>
       <div className='col-12 col-lg-6 m-auto'>
           <form onSubmit={handleSubmit}>
             <div className='row'>
               <div className="form-group col-12 pb-2">
-                <label htmlFor="title">Title:</label>
-                <input type="text" className="form-control" id="title" name="title" value={title} onChange={(e) => settitle(e.target.value)} />
+                <label htmlFor="title">{t('Title')} :</label>
+                <input type="text" className="form-control" id="title"  name="title" value={title} onChange={(e) => settitle(e.target.value)} />
               </div>
               <div className="form-group col-12 pb-2">
-                <label htmlFor="description">Description:</label>
+                <label htmlFor="description">{t('Description')}</label>
                 <textarea className="form-control" id="description" name="description" value={description} onChange={(e) => setdescription(e.target.value)} />
               </div>
               <div className="form-group col-12 pb-2">
-                <label htmlFor="video">Video file:</label>
-                <input type="file" className="form-control" id="video" onChange={(e) => setFile(e.target.files[0])} />
+                <label htmlFor="video">{t('Video')} :</label>
+                <input type="file" className="form-control" id="video" required onChange={(e) => setFile(e.target.files[0])} />
               </div>
               <div className="form-group col-12 pb-2">
-                <button type="submit" className="w-100 btn-submit btn px-5">{videoId ? 'Update' : 'Upload'}</button>
+                <button type="submit" className="w-100 btn-submit btn px-5">{videoId ? t('Update') :t('Upload') }</button>
               </div>
               {progress > 0 && (
   <progress value={progress} max="100" />
 )}
-
-
               {url && 
                   <video src={url} controls className="mt-3" />
                }
             </div>
           </form>
           </div>
-
-
       <div className='col-12 py-5 text-center'>
       {video ? <div>
         <video width={"100%"}  controls>
                  <source src={video} type="video/mp4" />
               </video>
-              <button type="button" className="btn btn-accecpt my-3" onClick={()=>handleDelete()}>Delete Video</button>
-
+              <button type="button" className="btn btn-accecpt my-3" onClick={()=>handleDelete()}>{t('DeleteVideo')}</button>
       </div>
               :
               <div className=''>
-                <p>No video added</p>
+                <p>{t('NoVideoAdded')}</p>
               </div>}
               {error && <div className="alert alert-danger">{error}</div>}
 
               </div>
             
-
-    
           </div>
     </>
 

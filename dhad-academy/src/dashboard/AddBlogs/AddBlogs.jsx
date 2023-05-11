@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from "moment"
+import 'moment/min/locales';
+
 import { Container } from 'react-bootstrap';
 import { apihttp } from "../../api/api"
 import { useNavigate } from 'react-router';
-
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 const AddBlogs = () => {
+  const [t] = useTranslation();
+
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState('');
   const [titleAR, setTitleAR] = useState('');
@@ -108,11 +113,14 @@ const AddBlogs = () => {
 
   return (
     <>
-    <h3>Blogs</h3>
-     <div className='py-2 instructors'>
-     <span className='mx-3'>Total: {blogs.length}</span>
-     <button className={`btn mx-1 ${showAdd ? "":"active" }`}  onClick={All}>All</button>
-     <button className={`btn mx-1 ${showAdd ? "active":"" }`} onClick={Add}>Add</button>
+    <h3>{t('Blogs')}</h3>
+     <div className='py-2 instructors  d-flex justify-content-between align-items-center'>
+      <div>
+      <span className='mx-3'>{t('Total')}: {blogs.length}</span>
+     <button className={`btn mx-1 ${showAdd ? "":"active" }`}  onClick={All}>{t('All')}</button>
+    
+      </div>
+     <button className={`btn mx-1 ${showAdd ? "active":"" }`} onClick={Add}>{t('Add')}</button>
      </div>
       {showAdd?
       <div className='py-4 row'>
@@ -203,33 +211,38 @@ const AddBlogs = () => {
       )}
 
       </div>
-: <div className='row d-flex justify-content-center justify-content-md-start fs-5 py-4'>
+:
+ <div className='row d-flex justify-content-center justify-content-md-start fs-5 py-4'>
 
 {blogs.map((blog) => (
         <div className="col-12 col-lg-6  mb-3" key={blog._id}>
          <div className='card h-100'>
-         <div className="card-body ">
+         <div className="card-body my-2 d-flex flex-column justify-content-between  ">
             
-            <p>{moment(blog.createdAt).fromNow()}</p>
-            <div className="py-1 d-flex justify-content-center">
+            <p>
+            {
+              i18n.language=="en"? moment(blog.createdAt).fromNow() :moment(blog.createdAt).locale('ar').fromNow()
+            }
+            </p>
+            <div className="py-2 my-2 d-flex justify-content-center">
               <img
                 src={`${apihttp}${blog.image}`}
                 alt={blog.title}
                 width={"60%"} height={200}
               />
               </div>
-              <p className=' m-0 fw-bold'>title: <span className=' fw-normal'>  {blog.title}</span></p>
-              <p className=' m-0 fw-bold'>title (AR): <span className=' fw-normal'>  {blog.titleAR}</span></p>
-              <p className=' m-0 fw-bold'>Description: <span className=' fw-normal'>  {blog.description}</span></p>
+              <p className='fw-bold'>{t('TitleEN')} <p className=' fw-normal'>  {blog.title}</p></p>
+              <p className='fw-bold'>{t('TitleAR')}  <p className=' fw-normal'>  {blog.titleAR}</p></p>
+              <p className='fw-bold '>{t('Description')} <p className=' fw-normal overflow-auto' style={{maxHeight:"100px"}}>  {blog.description}</p></p>
   
-              <p className='m-0 fw-bold'>description (AR): <span className=' fw-normal'>  {blog.descriptionAR}</span></p>
+              <p className=' fw-bold'>{t('DescriptionAR')} <p className=' fw-normal overflow-auto' style={{maxHeight:"100px"}}>  {blog.descriptionAR}</p></p>
             
             <div className="pt-3 text-center">
               <button
                 className=" btn-submit btn px-5"
                 onClick={() => handleDeleteBlog(blog)}
               >
-                Delete
+                {t('Delete')}
               </button>
               </div>
             </div>

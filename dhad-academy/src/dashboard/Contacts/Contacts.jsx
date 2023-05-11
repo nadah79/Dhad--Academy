@@ -8,9 +8,10 @@ import "./contact.css"
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { apihttp } from '../../api/api';
-
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 function Contacts() {
-
+  const [t] = useTranslation();
 
 
   const user = JSON.parse(localStorage.getItem("token")) ? JSON.parse(localStorage.getItem("token")) : null
@@ -80,36 +81,36 @@ function Contacts() {
     fetchContacts();
   }, [])
 
-  
-
-
-
-  return (
+    return (
     <>
-    <h3>Contacts</h3>
+    <h3>{t('Contacts')}</h3>
     <div className='py-2 '>
-    <span>Total: {contacts.length}</span>
-     <button className="btn mx-3 btn-delete"  onClick={handleDeleteAllContacts}>Delete All</button>
+    <span>{t('Total')} : {contacts.length}</span>
+     <button className="btn mx-3 btn-delete"  onClick={handleDeleteAllContacts}>{t('DeleteAll')}</button>
 
      </div>
-    <Container className='py-2 w-75 contact'>
+    <Container className='py-5 w-75 contact'>
  {contacts.length>0?contacts.map(post => (
 
     <div key={post._id}  className=" card m-1 m-lg-4 ">
           <div className="card-body  align-items-center">
-          <p>{moment(post.createdAt).fromNow()}</p>
-          <p className=' fw-bold'>Name: <span className=' fw-normal'> {post.name} </span></p>
-          <p className=' fw-bold'>Email: <span className=' fw-normal'> {post.phonenumber}</span></p>
-          <p className=' fw-bold'>subject:<span className=' fw-normal'> {post.message}</span></p>
-          <p className=' fw-bold'>message:<span className=' fw-normal'>{post.subject}</span> </p>
+          <p>
+          {
+              i18n.language=="en"? moment(post.createdAt).fromNow() :moment(post.createdAt).locale('ar').fromNow()
+            }
+    </p>
+          <p className=' fw-bold'>{t('Name')} : <span className=' fw-normal'> {post.name} </span></p>
+          <p className=' fw-bold'>{t('Email')} :<span className=' fw-normal'> {post.phonenumber}</span></p>
+          <p className=' fw-bold'>{t('Subject')} :<span className=' fw-normal'> {post.message}</span></p>
+          <p className=' fw-bold'>{t('Message')} :<span className=' fw-normal'>{post.subject}</span> </p>
           <div className=' text-center mt-3' >
-          <button className="btn btn-delete" onClick={()=>handleDeleteContact(post._id)}>Delete</button>
+          <button className="btn btn-delete" onClick={()=>handleDeleteContact(post._id)}>{t('Delete')}</button>
           </div>
             </div>
           </div>
              )):
              <div className='text-center py-2'>
-             No messages
+             {t('NoMessages')}
              </div>
              }
     </Container>

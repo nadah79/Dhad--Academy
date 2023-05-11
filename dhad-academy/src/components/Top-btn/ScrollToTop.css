@@ -1,14 +1,18 @@
 .backToTop {
-    bottom: 25px;
-    right: 25px;
+    bottom: 20px;
+    right: 20px;
     position: fixed;
-    font-size: 1rem;
-    color: #ffffff;
+    color: #ffffff !important;
     cursor: pointer;
     border: none;
-    border-radius: 55px;
-
+    width: 40px;
+    height: 40px;
     background: var(--secondry-color);
+  }
+  .backToTop i{
+    color: #ffffff !important;
+    display: inline-block;
+
   }
   .backToTop:hover {
     background: var(--primary-color);

@@ -4,10 +4,7 @@ const fs = require('fs')
 const path =require('path')
 const response= require('../utils/response')
 
-
-
 class admainController {
-
 
 static addCourse =async (req,res) => {
 

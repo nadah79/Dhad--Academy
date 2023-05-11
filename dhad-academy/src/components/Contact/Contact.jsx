@@ -69,27 +69,27 @@ function Contact() {
                   <label className="form-label" htmlFor="name">
                   {t('Name')}
                   </label>
-                  <input type="text" id="name" className="form-control" name="name" value={formData.name} onChange={handleChange} />
+                  <input type="text" id="name" className="form-control" name="name" required value={formData.name} onChange={handleChange} />
                 </div>
                 <div className="col-6 form-group pb-3">
                   <label className="form-label" htmlFor="email">
                   {t('Email')} 
                   </label>
-                  <input type="email  " id="phone" className="form-control" name="phone" value={formData.phonenumber} onChange={(e)=>setFormData({...formData,phonenumber:e.target.value})} />
+                  <input type="email  " id="phone" className="form-control" name="phone" required value={formData.phonenumber} onChange={(e)=>setFormData({...formData,phonenumber:e.target.value})} />
                 </div>
 
                 <div className="col-12 form-group pb-3">
                   <label className="form-label" htmlFor="subject">
                   {t('Subject')}
                   </label>
-                  <input type="text" id="subject" className="form-control" name="subject" value={formData.subject} onChange={handleChange} />
+                  <input type="text" id="subject" className="form-control" name="subject" required value={formData.subject} onChange={handleChange} />
                 </div>
 
                 <div className="form-group col-12 pb-3">
                   <label className="form-label" htmlFor="message">
                   {t('Message')}
                   </label>
-                  <textarea className="form-control" id="message" rows="4" name="message" value={formData.message} onChange={handleChange}></textarea>
+                  <textarea className="form-control" id="message" rows="4" name="message" required value={formData.message} onChange={handleChange}></textarea>
                 </div>
               </div>
               <div className="pt-3">

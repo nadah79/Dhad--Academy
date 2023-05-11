@@ -3,6 +3,7 @@ import actions from '../../../actions/actions'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 
 function Register() {
   const [t] = useTranslation();
@@ -78,7 +79,11 @@ console.log(loginSucceful,"ssssss")
                 <button type="submit" className="w-100 btn-submit btn px-5">{t('Register')}</button>
                 <p>{loginSucceful.registrationfail ? loginSucceful.registrationfail : ""}</p>
                 <p>{loginSucceful.registration ? loginSucceful.registration : ""}</p>
-                <p>{errorMsg}</p>
+                <p>
+                  {
+                    i18n.language=="en"? errorMsg :errorMsgAR
+                  }
+                </p>
               </div>
             </div>
 

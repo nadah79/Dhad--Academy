@@ -1,6 +1,6 @@
 .btn-submit{
     background: var(--primary-color) !important;
-    color: var(--white) !important;   
+    color: var(--white) !important;  
 }
 
 .btn-submit:hover{

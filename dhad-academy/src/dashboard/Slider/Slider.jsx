@@ -7,7 +7,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { apihttp } from '../../api/api';
 import { Container } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 function SliderAdmin() {
+  const [t] = useTranslation();
+
   const [updatedFile, setUpdatedFile] = useState(null);
   const [files, setFiles] = useState([]);
 
@@ -91,15 +95,15 @@ const settings = {
 };
 return (
   <>
-    <h3>Slider</h3>
+    <h3>{t('Slider')}</h3>
     <div className='p-3 row'>
-    <h5>File Uploader</h5>
+    {/* <h5>{t('FileUploader')}</h5> */}
     <div className=' w-50 m-auto'>
     <Dropzone onDrop={handleUpload}>
       {({ getRootProps, getInputProps }) => (
         <div {...getRootProps()} style={{ border: '1px solid black' }} className=" text-center">
           <input {...getInputProps()} type="file" />
-          <label htmlFor="image">Select Image</label>
+          <label htmlFor="image">{t('SelectImage')}</label>
         </div>
       )}
     </Dropzone>
@@ -108,15 +112,15 @@ return (
     </div>
 
     <div className='p-3 my-3 row'>
-    <h5>Files</h5>
+    <h5>{t('Images')}</h5>
     <div>
     <ul>
       {files.map((file) => (
         <li key={file._id} className='py-2'>
           {file.name} ({file.mimetype})
           <img src={`${apihttp}${file.name}`} width={200} />
-          <button className='btn btn-light  m-2' onClick={() => handleDownload(file._id)}>Download</button>
-          <button className='btn btn-dark m-2' onClick={() => handleDelete(file._id)}>Delete</button>
+          <button className='btn btn-light  m-2' onClick={() => handleDownload(file._id)}>{t('Download')}</button>
+          <button className='btn btn-dark m-2' onClick={() => handleDelete(file._id)}>{t('Delete')}</button>
         </li>
       ))}
     </ul>

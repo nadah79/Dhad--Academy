@@ -4,7 +4,11 @@ import { Container } from 'react-bootstrap';
 import "./instructors.css"
 import { apihttp } from "../../api/api"
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 const Instructors = () => {
+  const [t] = useTranslation();
+
   const [users, setUsers] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -212,14 +216,17 @@ const Instructors = () => {
 
   return (
     <>
-    <h3>Users</h3>
-     <div className='py-2 instructors'>
-     <span className='mx-3'>Total: {users.length}</span>
-     <button className={`btn mx-1 ${show==="all"? "active":"" }`}  onClick={()=>sellectCategory("all")}>All</button>
-     <button className={`btn mx-1 ${show==="instructor"? "active":"" }`}  onClick={()=>sellectCategory("instructor")}>Instructors</button>
-     <button className={`btn mx-1 ${show==="user" ?"active":"" }`}  onClick={()=>sellectCategory("user")}>Users</button>
-     <button className={`btn mx-1 ${show==="Admin" ? "active":"" }`}  onClick={()=>sellectCategory("Admin")}>Admins</button>
-     <button className={`btn mx-1 ${show==="add" ? "active":"" }`} onClick={Add}>Add</button>
+    <h3>{t('Users')}</h3>
+     <div className='py-2 instructors d-flex justify-content-between align-items-center'>
+      <div>
+      <span className='mx-3'>{t('Total')} : {users.length}</span>
+     <button className={`btn mx-1 ${show==="all"? "active":"" }`}  onClick={()=>sellectCategory("all")}>{t('All')}</button>
+     <button className={`btn mx-1 ${show==="instructor"? "active":"" }`}  onClick={()=>sellectCategory("instructor")}>{t('Instructors')}</button>
+     <button className={`btn mx-1 ${show==="user" ?"active":"" }`}  onClick={()=>sellectCategory("user")}>{t('Users')}</button>
+     <button className={`btn mx-1 ${show==="Admin" ? "active":"" }`}  onClick={()=>sellectCategory("Admin")}>{t('Admins')}</button>
+
+      </div>
+          <button className={`btn mx-1 justify-content-end ${show==="add" ? "active":"" }`} onClick={Add}>{t('Add')}</button>
      </div>
 
      {showAdd?

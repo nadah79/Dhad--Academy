@@ -7,8 +7,6 @@ const addvideose = mongoose.Schema({
         type:String,
         required:[true,"enter your name please"],
         trim: true,
-        minLength:10,
-        maxLength:200
         
     },
     description: {
@@ -29,8 +27,8 @@ const addvideose = mongoose.Schema({
 function validateAddvideo (obj){
 
 const schema = joi.object({
-title : joi.string().trim().min(3).max(200).required(),
-description :joi.string().trim().min(3).required(),
+title : joi.string().trim().required(),
+description :joi.string().trim().required(),
 
 });
 return schema.validate(obj);
