@@ -15,14 +15,7 @@ function App() {
   const { i18n } = useTranslation();
   document.body.dir = i18n.dir();
 
-const token = JSON.parse(localStorage.getItem("token"))
-// useEffect(() => {
-//   if(token){
-//     nav("/")
-//     }
-// }, [token]);
 
-console.log(token)
   return (
     <>
   <div className="App vh-100">

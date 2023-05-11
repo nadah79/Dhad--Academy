@@ -3,6 +3,7 @@ const admin = require('../controller/adminaddvedioandcourseController')
 const multer = require('multer')
 const path =require('path')
 const fs = require('fs')
+const auth=require("../midleware/authentication");
 
 
 var storage = multer.diskStorage({
@@ -17,9 +18,9 @@ var storage = multer.diskStorage({
   
   var upload = multer({ storage: storage }).single('video');
 
-  router.post('/addVideo',upload,admin.addvideo)
+  router.post('/addVideo',auth.isAdmin,upload,admin.addvideo)
   router.get('/getVideo',admin.getallvideo)
-router.delete('/deleteVideo',admin.deletevideo)
+router.delete('/deleteVideo',auth.isAdmin,admin.deletevideo)
 
 
 

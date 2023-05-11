@@ -52,8 +52,8 @@ addBlogModel.virtual('comment',{
 function validateaddBlog (obj){
 
 const schema = joi.object({
-    title : joi.string().trim().min(10).max(200).required(),
-    titleAR : joi.string().trim().min(10).max(200).required(),
+    title : joi.string().trim().required(),
+    titleAR : joi.string().trim().required(),
     description :joi.string().trim().min(15).required(),
     descriptionAR :joi.string().trim().min(15).required(),
 

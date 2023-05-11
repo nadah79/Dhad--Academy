@@ -10,17 +10,17 @@ class Blog {
 
 static getblog = async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = 3;
-    const startIndex = (page - 1) * limit;
+    // const page = parseInt(req.query.page) || 1;
+    // const limit = 3;
+    // const startIndex = (page - 1) * limit;
 
     const totalBlogs = await blogmodel.addBlog.countDocuments();
     const totalPages = Math.ceil(totalBlogs / limit);
 
     const blogs = await blogmodel.addBlog.find().populate('comment')
       .sort({ createdAt: -1 })
-      .skip(startIndex)
-      .limit(limit);
+      // .skip(startIndex)
+      // .limit(limit);
 
     res.set('x-total-count', totalBlogs); // set the x-total-count header
     res.status(200).json(blogs);

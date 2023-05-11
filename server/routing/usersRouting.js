@@ -33,7 +33,7 @@ router.post('/', (req, res,next) => {
 },users.userRegistration);
 router.post('/login',users.userLogin)
 router.put('/courses/:id',auth.isAdmin, users.addUserCourse)
-router.delete('/courses/:id', users.removeUserCourse);
+router.delete('/courses/:id',auth.isAdmin, users.removeUserCourse);
 router.get('/courses/:userId', users.getUserCourses);
 router.post('/enrollment/:id',auth.isUser,users.enrollment)
 router.get('/enrollment-requests',auth.isAdmin,users.getrequestesenrolled)

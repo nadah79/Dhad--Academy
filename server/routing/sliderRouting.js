@@ -21,11 +21,10 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single('image');
 
-router.post('/', upload
-,slider.postslider);
+router.post('/', auth.isAdmin, upload,slider.postslider);
 router.get('/',slider.getallfiles);
 router.get('/:id',slider.getspacificfiles);
-router.delete('/:id',slider.deleteFiles);
+router.delete('/:id',auth.isAdmin,slider.deleteFiles);
 
 
 

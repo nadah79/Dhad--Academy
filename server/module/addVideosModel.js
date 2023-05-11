@@ -5,13 +5,14 @@ const joi = require('joi')
 const addvideose = mongoose.Schema({
     title: {
         type:String,
-        required:[true,"enter your name please"],
+     
         trim: true,
+    
         
     },
     description: {
         type: String,
-        required:[true,"the discription is required field"],
+    
         trim: true,
         lowercase: true
     },
