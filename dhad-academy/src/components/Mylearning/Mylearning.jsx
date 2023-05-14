@@ -8,6 +8,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import i18n from 'i18next';
+
 const Mylearning = () => {
   const [t] = useTranslation();
   const [coursesUsers, setcoursesUsers] = useState([]);
@@ -58,7 +60,11 @@ console.log(lessons.lessons);
                 <img src={`${apihttp}${course.courseId?.image}`} height={250} className="rounded-img-top" alt="..." />
                 <div className="card-body d-flex flex-column justify-content-between" style={{height:"200px"}}>
                     <p className="card-title"><i className="fa-regular fa-clock pe-1"></i>{course.courseId?.hours} {t('Hours')}</p>
-                    <h6 className="card-text">{course.courseId?.title } </h6>
+                    <h6 className="card-text">
+                    {
+              i18n.language=="en"? course.courseId?.courseName  :course.courseId?.courseNameAR
+            }
+                       </h6>
                     <h6 className="card-text">{course.courseId?.lessons.length} {t("Lessons")} </h6>
                     <button onClick={()=>handellersendLessons(course.courseId)} className="w-100 btn-submit btn px-5">{t("StartNow")}</button>
                 </div>

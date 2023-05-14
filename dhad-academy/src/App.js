@@ -9,6 +9,7 @@ import { useEffect,useState  } from "react";
 
 import { useNavigate } from 'react-router-dom';
 import ScrollToTop from './components/Top-btn/ScrollToTop';
+import Layout from './components/Layout/Layout';
 
 function App() {
   const nav = useNavigate()
@@ -19,10 +20,7 @@ function App() {
   return (
     <>
   <div className="App vh-100">
-  <Header/>
-  <Roting/>
-  <ScrollToTop/>
-  <Footer/>
+    <Roting/>
     </div>
     
     </>

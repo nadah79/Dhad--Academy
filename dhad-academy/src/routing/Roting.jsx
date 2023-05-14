@@ -20,6 +20,7 @@ import MyProfile from '../components/My Profile/MyProfile';
 import Enrollment from '../dashboard/EnrollmentRequests/Enrollment';
 import Slider from '../dashboard/Slider/Slider';
 import Mylearning from '../components/Mylearning/Mylearning';
+import Layout from '../components/Layout/Layout';
 const LazyLoadingBlog = React.lazy(() => import("../components/Blog/Blog"));
 const LazyLoadingTeachers = React.lazy(() => import("../components/Teachers/Teachers"));
 const LazyLoadingCourses = React.lazy(() => import("../components/Courses/Courses"));
@@ -33,8 +34,9 @@ const users = JSON.parse(localStorage.getItem("token"))?JSON.parse(localStorage.
 
 
     return (
-        <>      
-      <Routes>
+        <>     
+       <Routes>
+       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="/home" element={<Home/>} />
         {/* <Route path="/test" element={<Test/>} /> */}
@@ -60,6 +62,7 @@ const users = JSON.parse(localStorage.getItem("token"))?JSON.parse(localStorage.
           </React.Suspense>
           } />
         <Route path="/blog/:id" element={<BlogDetails/>} />
+        </Route>
       {!users?  <Route path="/myprofile" element={<MyProfile/>} />:
         <Route path="/myprofile" element={<Home/>} />
       }
@@ -79,9 +82,9 @@ const users = JSON.parse(localStorage.getItem("token"))?JSON.parse(localStorage.
         <Route path="/admin" element={<Home/>} />
     }
   
-    
-
       </Routes>
+     
+
     
         </>
     );

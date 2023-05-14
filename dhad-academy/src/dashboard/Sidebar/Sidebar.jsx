@@ -28,9 +28,11 @@ function Sidebar() {
             <div className='d-flex'>
                 <CDBSidebar className='sidebar position-sticky top-0 vh-100 '>
                     <CDBSidebarHeader prefix={<CDBIcon icon="bars" size="lg" />}>
-                        {/* <Container className=' d-flex align-items-center'>
-                        <img width="80%" src={require("../../assets/images/logo.png")} alt="logo" />
-                        </Container> */}
+                        <Container className=' d-flex align-items-center'>
+                       <NavLink to="/Home">
+                       <img width="80%" src={require("../../assets/images/logo.png")} alt="logo" />
+                       </NavLink>
+                        </Container>
                     </CDBSidebarHeader>
 
                     <CDBSidebarContent>
