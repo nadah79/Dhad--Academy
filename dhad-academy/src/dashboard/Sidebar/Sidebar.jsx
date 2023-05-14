@@ -10,8 +10,6 @@ import {
     CDBSidebarFooter,
     CDBIcon,
 } from 'cdbreact';
-import { Container } from 'react-bootstrap';
-import RoutesDashboard from '../Routes/RoutesDashboard';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 function Sidebar() {
@@ -26,13 +24,11 @@ function Sidebar() {
 
 <>
             <div className='d-flex'>
-                <CDBSidebar className='sidebar position-sticky top-0 vh-100 '>
-                    <CDBSidebarHeader prefix={<CDBIcon icon="bars" size="lg" />}>
-                        <Container className=' d-flex align-items-center'>
-                       <NavLink to="/Home">
-                       <img width="80%" src={require("../../assets/images/logo.png")} alt="logo" />
+                <CDBSidebar className='sidebar  position-sticky top-0 vh-100 '>
+                    <CDBSidebarHeader prefix={<CDBIcon icon="bars" size="lg" />} className={"text-center"}>
+                       <NavLink to="/Home" >
+                       <img width="70%" src={require("../../assets/images/logo.png")} alt="logo" />
                        </NavLink>
-                        </Container>
                     </CDBSidebarHeader>
 
                     <CDBSidebarContent>

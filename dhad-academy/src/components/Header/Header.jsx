@@ -231,7 +231,7 @@ function Header() {
                   className={({ isActive }) => (isActive ? 'active' : '')}
                   onClick={CloseOffcanvas}
                 >
-                {t('Admin')}
+                {t('Dashboard')}
                 </NavLink> : ''}
                 <div className='d-xl-none d-block'>
                 <div className="hr w-50"></div>
@@ -270,7 +270,7 @@ function Header() {
             {!users ? <li onClick={CloseOffcanvas} className='my-2'>
               <NavLink to={"/myprofile"} className=" text-decoration-none">
                 <i className="fa-regular fa-user"></i>
-                My Profile
+                {t('MyProfile')}
               </NavLink>
             </li> :
               <li 

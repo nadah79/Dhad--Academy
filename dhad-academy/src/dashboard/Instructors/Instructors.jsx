@@ -236,27 +236,27 @@ const Instructors = () => {
       <form onSubmit={handleCreateUser}>
       <div className='row'>
                 <div className="col-12 form-group ">
-                  <label className="px-2 opacity-75">Username</label>
+                  <label className="px-2 opacity-75">{t('UserName')} :</label>
                   <input className="form-control" type="text" value={username} onChange={handleUsernamChange} />
                 </div>
                 <div className="col-12 form-group ">
-                  <label className="px-2 opacity-75">Email</label>
+                  <label className="px-2 opacity-75">{t('Email')} :</label>
                   <input className="form-control" type="email" value={email} onChange={handleEmailChange} />
                 </div>
                 <div className="col-12 form-group ">
-                  <label>Password:</label>
+                  <label>{t('Password')} :</label>
                   <input className="form-control" type="password" value={password} onChange={handlePasswordChange} />
                 </div>
                 <div className="col-12 form-group ">
-                  <label className="px-2 opacity-75">Role</label>
+                  <label className="px-2 opacity-75">{t('Role')} :</label>
                   <select className="form-select form-select-lg" value={isAdmin} onChange={handleIsAdminChange}>
-                    <option value="user">User</option>
-                    <option value="instructor">Instructor</option>
-                    <option value="Admin">Admin</option>
+                    <option value="user">{t('User')}</option>
+                    <option value="instructor">{t('Instructor')}</option>
+                    <option value="Admin">{t('Admin')}</option>
                   </select>
                 </div>
                 <div className="col-12 form-group">
-                  <label className="px-2 opacity-75">Image</label>
+                  <label className="px-2 opacity-75">{t('Image')} :</label>
                   <input className="form-control" type="file" onChange={handleImageChange} />
                   <img src={img} width={200} />
 

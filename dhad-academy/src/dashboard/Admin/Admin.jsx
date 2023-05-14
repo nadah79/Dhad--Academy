@@ -1,6 +1,5 @@
 import React from 'react'
 import Sidebar from '../Sidebar/Sidebar'
-import RoutesDashboard from '../Routes/RoutesDashboard'
 
 function Admin() {
   return (
@@ -8,7 +7,6 @@ function Admin() {
     <div>
     <Sidebar>
     </Sidebar>
-    <RoutesDashboard/>
     </div>
     
 
