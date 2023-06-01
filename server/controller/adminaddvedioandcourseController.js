@@ -191,7 +191,7 @@ static updateCourse = async (req, res) => {
 
 
 static deleteCourse = async (req, res) => {
-  console.log("deleteCourse");
+
   const _id = req.params.id;
 
   try {

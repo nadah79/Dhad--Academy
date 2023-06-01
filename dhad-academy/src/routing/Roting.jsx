@@ -26,9 +26,7 @@ const LazyLoadingTeachers = React.lazy(() => import("../components/Teachers/Teac
 const LazyLoadingCourses = React.lazy(() => import("../components/Courses/Courses"));
 
 const Roting = () => {
-// const users = JSON.parse(localStorage.getItem("token"))
 
-// const users = JSON.parse(localStorage.getItem("token"))
 const users = JSON.parse(localStorage.getItem("token"))?JSON.parse(localStorage.getItem("token")):null
 
 
