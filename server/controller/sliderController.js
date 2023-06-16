@@ -12,7 +12,7 @@ const fileSchema = require('../module/sliderModel');
 
 class slider {
     static postslider= async (req, res) => {
-console.log("ddddddddddddddddddd")
+
         const imagePath = req.file.path;
         const filePath = imagePath;
         const fileName = path.basename(filePath);

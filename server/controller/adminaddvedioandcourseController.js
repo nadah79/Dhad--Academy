@@ -235,7 +235,6 @@ static addlesson=async (req, res) => {
         video: req.body.video,
         meeting: req.body.meeting,
         course_id: req.params.id,
-
       };
   
       course.lessons.push(lesson);
