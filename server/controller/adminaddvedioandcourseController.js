@@ -191,7 +191,7 @@ static updateCourse = async (req, res) => {
 
 
 static deleteCourse = async (req, res) => {
-  console.log("deleteCourse");
+
   const _id = req.params.id;
 
   try {
@@ -235,7 +235,6 @@ static addlesson=async (req, res) => {
         video: req.body.video,
         meeting: req.body.meeting,
         course_id: req.params.id,
-
       };
   
       course.lessons.push(lesson);
