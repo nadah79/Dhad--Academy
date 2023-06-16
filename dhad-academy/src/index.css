@@ -41,12 +41,20 @@
  a{
   text-decoration: none;
 }
-.btn-accecpt{
+.btn-delete {
   background-color: var(--secondry-color);
   color: var(--white);
 }
-.btn-delete{
-background-color: var(--primary-color);
-color: var(--white);
+.btn-delete:hover{
+  background-color:  var(--white);
+  color: var(--secondry-color);
 
 }
+.btn-accecpt{
+background-color: var(--primary-color);
+color: var(--white);
+}
+.btn-accecpt:hover{
+  background-color:var(--white);
+  color: var(--primary-color);
+  }

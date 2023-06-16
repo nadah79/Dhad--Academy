@@ -10,9 +10,9 @@ class Blog {
 
 static getblog = async (req, res) => {
   try {
-    // const page = parseInt(req.query.page) || 1;
-    // const limit = 3;
-    // const startIndex = (page - 1) * limit;
+    const page = parseInt(req.query.page) || 1;
+    const limit = 3;
+    const startIndex = (page - 1) * limit;
 
     const totalBlogs = await blogmodel.addBlog.countDocuments();
     const totalPages = Math.ceil(totalBlogs / limit);

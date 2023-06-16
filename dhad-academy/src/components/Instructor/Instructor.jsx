@@ -10,9 +10,9 @@ function Instructor(props) {
   return (
 
     <>
-      <div className='py-3 py-lg-5 d-flex flex-column mx-3 mx-md-5'>
+      <div className='py-3 py-lg-4 d-flex flex-column mx-5 px-0'>
         <img className='rounded-4 ' src={props.img} alt={props.name} width={"100%"} height={250}  />
-        <h4 className=' pt-3' >{props.name}</h4>
+        <h4 className='pt-3' >{props.name}</h4>
         <p>{t('Instructor')}</p>
       </div>
     </>

@@ -4,8 +4,7 @@ const joi = require('joi')
 
 const addvideose = mongoose.Schema({
     title: {
-        type:String,
-     
+        type:String,     
         trim: true,
     
         
@@ -28,8 +27,8 @@ const addvideose = mongoose.Schema({
 function validateAddvideo (obj){
 
 const schema = joi.object({
-title : joi.string().trim().required(),
-description :joi.string().trim().required(),
+title : joi.string().trim(),
+description :joi.string().trim(),
 
 });
 return schema.validate(obj);

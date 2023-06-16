@@ -336,8 +336,8 @@ const Instructors = () => {
               
 
                 <div className='col-7 col-lg-4 d-flex justify-content-evenly'>
-                  <button onClick={() => handleSelectUser(user)} className='btn border-0 fs-5' ><i className="fa-solid fa-pen"></i></button>
-                  <button onClick={() => handleDeleteUser(user._id)} className='btn border-0 fs-5'><i className="fa-solid fa-trash"></i></button>
+                  <button onClick={() => handleSelectUser(user)} className='btn border-0 fs-5' title={t('Update')} ><i className="fa-solid fa-pen"></i></button>
+                  <button onClick={() => handleDeleteUser(user._id)} className='btn border-0 fs-5' title={t('Delete')}><i className="fa-solid fa-trash"></i></button>
                 </div>
               </div>
             </div>

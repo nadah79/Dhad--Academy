@@ -44,8 +44,9 @@ const Home = () => {
       const [files, setFiles] = useState([]);
       const settings = {
         dots: true,
+        arrows: false,
         infinite: true,
-        speed: 500,
+        speed: 1000,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true, // enable autoplay
@@ -115,22 +116,33 @@ const [currentPage, setCurrentPage] = useState(1);
                     </h2>
                 </div>
                 </div>
+                </Container>
+                <Slider {...settings}>
+    {files.map((file) => (
+      <div key={file._id}>
+        <img width={"100%"} height={400} src={`${apihttp}${file.name}`} alt={file.name} />
+      </div>
+    ))}
+  </Slider>
+
+                <Container className='py-5'>
                 <div className='services'>
                 <OurServices/>
                 </div>
             </Container>
-            <div>
+            <div className='py-5'>
               <video width={"100%"} height={400} controls>
                 {video && <source src={video} type="video/mp4" />}
               </video>
             </div>
             <Container className='pb-5'>
-            <div className='row pt-5 blogs  justify-content-center '>
+              {blogs.length>0?
+            <div className='row d-flex justify-content-center justify-content-md-start pt-5 blogs  '>
             <h3 className='col-12 text-center  pb-5'>{t('RecentPosts')}</h3>
             {blogs.map((blog) => (
 
 <div key={blog.id} className="col-10 col-sm-7 col-md-6 col-lg-4  pb-5">
-    <div className="card rounded-20">
+<div className="card rounded-20 h-100">
         
         <img src={`${apihttp}${blog.image}`} className="rounded-img-top" height={"320"} alt="..." />
         <div className="card-body d-flex flex-column justify-content-between" style={{height:"150px"}}>
@@ -148,16 +160,8 @@ const [currentPage, setCurrentPage] = useState(1);
 
 </div>
           ))}
-                </div>
+          </div> :""}
 
-                
-<Slider {...settings}>
-    {files.map((file) => (
-      <div key={file._id}>
-        <img width={"100%"} height={400} src={`${apihttp}${file.name}`} alt={file.name} />
-      </div>
-    ))}
-  </Slider>
             </Container>
             
             {/* {

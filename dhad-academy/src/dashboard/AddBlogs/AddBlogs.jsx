@@ -129,7 +129,7 @@ const AddBlogs = () => {
       <form onSubmit={ handleAddBlog}>
 
         <div className="form-group">
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">{t('TitleEN')}</label>
           <input
             type="text"
             className="form-control"
@@ -141,7 +141,7 @@ const AddBlogs = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="titleAR">Title (AR)</label>
+          <label htmlFor="titleAR">{t('TitleAR')}</label>
           <input
             type="text"
             className="form-control"
@@ -153,7 +153,7 @@ const AddBlogs = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="description">Description</label>
+          <label htmlFor="description">{t('Description')}</label>
           <textarea
             className="form-control"
             id="description"
@@ -164,7 +164,7 @@ const AddBlogs = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="descriptionAR">Description (AR)</label>
+          <label htmlFor="descriptionAR">{t('DescriptionAR')} </label>
           <textarea
             className="form-control"
             id="descriptionAR"
@@ -175,7 +175,7 @@ const AddBlogs = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="image">Image</label>
+          <label htmlFor="image">{t('Image')} </label>
           <input
             type="file"
             className="form-control"
@@ -200,7 +200,7 @@ const AddBlogs = () => {
         <div className="pt-3 col-12">
 
         <button type="submit" className="w-100 btn-submit btn px-5">
-          {updatingBlogId ? 'Update Blog' : 'Add Blog'}
+          {updatingBlogId ? t('Update') : t('Add')}
         </button>
         </div>
       </form>

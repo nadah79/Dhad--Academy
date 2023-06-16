@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Navbar, Container, Nav, NavDropdown, Offcanvas } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown, Offcanvas, Dropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { Modal, Row, Col } from "react-bootstrap";
 import './header.css';
@@ -46,13 +46,33 @@ function Header() {
             <div className="vr"></div>
             <li className="fw-lighter ltr">
               <NavLink to="mailto:Info@dhadacademy.com">
-              <i className="fa-solid fa-envelope"></i> Info@dhadacademy.com</NavLink>
+                <i className="fa-solid fa-envelope"></i> Info@dhadacademy.com</NavLink>
             </li>
           </ul>
 
+
           <ul className="navbar-nav justify-content-end pe-3  gap-4">
-            
-            <li className='dropdown ' >
+            <li >
+              <Dropdown>
+                <Dropdown.Toggle className="fw-lighter fs-5 dropdown-toggle btn py-0 border-0" id="dropdown-basic">
+                  <i className="fa-solid fa-language"></i>
+                  {t('Languages')}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item 
+                    onClick={() => {
+                      i18n.changeLanguage('ar');
+                    }}>Arabic</Dropdown.Item>
+                  <Dropdown.Item 
+                    onClick={() => {
+                      i18n.changeLanguage('en');
+                    }}>English</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </li>
+
+            {/* <li className='dropdown ' >
               <button className="fw-lighter fs-5 dropdown-toggle btn py-0 border-0"  id="DropdownMenu" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i className="fa-solid fa-language"></i>                
                 {t('Languages')}
@@ -75,9 +95,9 @@ function Header() {
                       English
                 </li>
               </ul>
-            </li>
+            </li> */}
             <div className="vr"></div>
-            
+
             {/* <li className='fw-lighter' onClick={handleShow}> */}
             {!users ? <li className='fw-lighter'>
               <NavLink to={"/myprofile"} className=" text-decoration-none">
@@ -86,7 +106,7 @@ function Header() {
               </NavLink>
             </li> :
               <li onClick={hadelerLogout} className='fw-lighter '>
-                  <i className="fa-solid fa-arrow-right-from-bracket"></i>                
+                <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 {t('Logout')}
               </li>}
 
@@ -171,36 +191,63 @@ function Header() {
                 >
                   {t('Services')}
                 </NavLink>
-               
-              <div className='dropdown '>
-              <button className=" fs-5 dropdown-toggle btn px-0 border-0"  id="DropdownMenu" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {t('Courses')}
-              </button>
-              <ul className="dropdown-menu" aria-labelledby="DropdownMenu">
-                 <li> <NavLink className="dropdown-item" to="/courses/Arabic" onClick={CloseOffcanvas} >{t('Arabic')}</NavLink></li>
+
+
+                <Dropdown>
+                  <Dropdown.Toggle className=" fs-5 dropdown-toggle btn p-0 border-0" id="dropdown-basic">
+                    {t('Courses')}
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item as={NavLink} to="/courses/Arabic" onClick={CloseOffcanvas}>
+                      {t('Arabic')}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={NavLink} to="/courses/QuranAndReadings" onClick={CloseOffcanvas} >
+                      {t('QuranAndReadings')}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={NavLink} to="/courses/IslamicStudies" onClick={CloseOffcanvas}>
+                      {t('IslamicStudies')}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={NavLink} to="/courses/QualifyingCourses" onClick={CloseOffcanvas} >
+                      {t('QualifyingCourses')}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={NavLink} to="/courses/CraftsAndSkills" onClick={CloseOffcanvas}>
+                      {t('CraftsAndSkills')}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={NavLink} to="/courses/FieldTrips" onClick={CloseOffcanvas} >
+                      {t('FieldTrips')}
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                {/* <div className='dropdown '>
+                  <button className=" fs-5 dropdown-toggle btn px-0 border-0" id="DropdownMenu" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {t('Courses')}
+                  </button>
+                  <ul className="dropdown-menu" aria-labelledby="DropdownMenu">
+                    <li> <NavLink className="dropdown-item" to="/courses/Arabic" onClick={CloseOffcanvas} >{t('Arabic')}</NavLink></li>
                  <li> <NavLink className="dropdown-item" to="/courses/QuranAndReadings" onClick={CloseOffcanvas} >{t('QuranAndReadings')}</NavLink></li>
-                 <li> <NavLink className="dropdown-item" to="/courses/IslamicStudies" onClick={CloseOffcanvas} >{t('IslamicStudies')}</NavLink></li>
-                 <li> <NavLink className="dropdown-item" to="/courses/QualifyingCourses" onClick={CloseOffcanvas} >{t('QualifyingCourses')}</NavLink></li>
-                 <li> <NavLink className="dropdown-item" to="/courses/CraftsAndSkills" onClick={CloseOffcanvas} >{t('CraftsAndSkills')}</NavLink></li>
-                 <li> <NavLink className="dropdown-item" to="/courses/FieldTrips" onClick={CloseOffcanvas} >{t('FieldTrips')} </NavLink></li>
-               
-              
-              </ul>
-                </div>
-                {users?   <NavLink
+                    <li> <NavLink className="dropdown-item" to="/courses/IslamicStudies" onClick={CloseOffcanvas} >{t('IslamicStudies')}</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="/courses/QualifyingCourses" onClick={CloseOffcanvas} >{t('QualifyingCourses')}</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="/courses/CraftsAndSkills" onClick={CloseOffcanvas} >{t('CraftsAndSkills')}</NavLink></li>
+                    <li> <NavLink className="dropdown-item" to="/courses/FieldTrips" onClick={CloseOffcanvas} >{t('FieldTrips')} </NavLink></li>
+
+
+                  </ul>
+                </div> */}
+                {users ? <NavLink
                   to="/mylearning"
                   className={({ isActive }) => (isActive ? 'active' : '')}
                   onClick={CloseOffcanvas}
                 >
-                {t('MyCources')}
-                </NavLink>:""}
-                
+                  {t('MyCources')}
+                </NavLink> : ""}
+
                 <NavLink
                   to="/blog"
                   className={({ isActive }) => (isActive ? 'active' : '')}
                   onClick={CloseOffcanvas}
                 >
-              {t('Blog')}
+                  {t('Blog')}
                 </NavLink>
                 <NavLink
                   to="/instructors"
@@ -216,7 +263,7 @@ function Header() {
                   onClick={CloseOffcanvas}
                 >
                   {t('contacts')}
-                  </NavLink>
+                </NavLink>
 
 
                 {/* <NavLink
@@ -231,13 +278,32 @@ function Header() {
                   className={({ isActive }) => (isActive ? 'active' : '')}
                   onClick={CloseOffcanvas}
                 >
-                {t('Dashboard')}
+                  {t('Dashboard')}
                 </NavLink> : ''}
                 <div className='d-xl-none d-block'>
-                <div className="hr w-50"></div>
-                
+                  <div className="hr w-50"></div>
 
-            <div className='dropdown my-2' >
+
+                  <Dropdown>
+                    <Dropdown.Toggle className="fw-light fs-5 dropdown-toggle btn p-0 border-0" id="dropdown-basic">
+                      <i className="fa-solid fa-language"></i>
+                      {t('Languages')}
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item 
+                        onClick={() => {
+                          i18n.changeLanguage('ar');
+                          CloseOffcanvas();
+                        }}>Arabic</Dropdown.Item>
+                      <Dropdown.Item 
+                        onClick={() => {
+                          i18n.changeLanguage('en');
+                          CloseOffcanvas();
+                        }}>English</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  {/* <div className='dropdown my-2' >
               <button className="fs-5 fw-light dropdown-toggle btn p-0 border-0"  id="DropdownMenu" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i className="fa-solid fa-language"></i>
                 {t('Languages')}
@@ -264,34 +330,35 @@ function Header() {
                       English
                 </li>
               </ul>
-            </div>
-            
-            {/* <li className='fw-lighter' onClick={handleShow}> */}
-            {!users ? <li onClick={CloseOffcanvas} className='my-2'>
-              <NavLink to={"/myprofile"} className=" text-decoration-none">
-                <i className="fa-regular fa-user"></i>
-                {t('MyProfile')}
-              </NavLink>
-            </li> :
-              <li 
-                  className=' my-2 cursor-pointer'
-                onClick={()=>{
-                hadelerLogout();
-                CloseOffcanvas();
-              }}>
-                <i className=" fa-solid fa-arrow-right-from-bracket"></i>
-                {t('Logout')}
+            </div> */}
 
-              </li>}
-              <li className="fw-lighter ltr my-2">
-              <i className="fa-solid fa-phone"></i>
-              +20 100 763 3800
-            </li>
-            <li className="fw-lighter ltr my-2">
-              <NavLink to="mailto:Info@dhadacademy.com">
-              <i className="fa-solid fa-envelope"></i> Info@dhadacademy.com</NavLink>
-            </li>
-        </div>
+
+                  {/* <li className='fw-lighter' onClick={handleShow}> */}
+                  {!users ? <li onClick={CloseOffcanvas} className='my-2'>
+                    <NavLink to={"/myprofile"} className=" text-decoration-none">
+                      <i className="fa-regular fa-user"></i>
+                      {t('MyProfile')}
+                    </NavLink>
+                  </li> :
+                    <li
+                      className=' my-2 cursor-pointer'
+                      onClick={() => {
+                        hadelerLogout();
+                        CloseOffcanvas();
+                      }}>
+                      <i className=" fa-solid fa-arrow-right-from-bracket"></i>
+                      {t('Logout')}
+
+                    </li>}
+                  <li className="fw-lighter ltr my-2">
+                    <i className="fa-solid fa-phone"></i>
+                    +20 100 763 3800
+                  </li>
+                  <li className="fw-lighter ltr my-2">
+                    <NavLink to="mailto:Info@dhadacademy.com">
+                      <i className="fa-solid fa-envelope"></i> Info@dhadacademy.com</NavLink>
+                  </li>
+                </div>
 
               </Nav>
 

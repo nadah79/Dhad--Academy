@@ -52,4 +52,13 @@ nav a:hover{
   color: var(--bg-color);
   background-color: var(--primary-color);
 }
+.dropdown-item{
 
+  outline: none !important;
+}
+
+.dropdown-toggle{
+  background-color: transparent !important;
+  color:var(--secondry-color) !important;
+  box-shadow: none !important;
+}

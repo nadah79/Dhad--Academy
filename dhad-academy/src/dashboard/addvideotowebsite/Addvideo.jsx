@@ -151,10 +151,13 @@ function Addvideo() {
           </div>
       <div className='col-12 py-5 text-center'>
       {video ? <div>
-        <video width={"100%"}  controls>
+        <video width={"50%"}  controls>
                  <source src={video} type="video/mp4" />
               </video>
+              <div>
               <button type="button" className="btn btn-accecpt my-3" onClick={()=>handleDelete()}>{t('DeleteVideo')}</button>
+
+              </div>
       </div>
               :
               <div className=''>

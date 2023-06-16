@@ -136,12 +136,18 @@ console.log(id);
                   />
                 </Col>
                 <Col xs={11} className="p-2">
-
-          <p style={{fontSize:"16px",fontFamily:"bold",fontWeight:"bold"}}>{moment(comment.createdAt).fromNow()}</p>
-                  <h5>{comment.username}</h5>
+                    <div className=" d-flex justify-content-between">
+                    <h5>{comment.username}</h5>
+                    <p>
+                    {
+              i18n.language=="en"? moment(comment.createdAt).fromNow() :moment(comment.createdAt).locale('ar').fromNow()
+            }
+                      {}</p>
+                    </div>
       
                   <p>{comment.text}</p>
                 </Col>
+
               </>
             ))
             : ''}

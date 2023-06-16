@@ -12,18 +12,18 @@ import Contacts from '../dashboard/Contacts/Contacts';
 import BlogDetails from '../components/Blog-Details/BlogDetails';
 // import Test from '../api/Test';
 import AddBlogs from '../dashboard/AddBlogs/AddBlogs';
-import AddCourses from '../dashboard/courses/AddCourses';
 import Addvideo from '../dashboard/addvideotowebsite/Addvideo';
-import Instructor from '../dashboard/Instructors/Instructors';
 import CourseDetails from '../components/Courses/CourseDetails';
 import MyProfile from '../components/My Profile/MyProfile';
-import Enrollment from '../dashboard/EnrollmentRequests/Enrollment';
 import Slider from '../dashboard/Slider/Slider';
 import Mylearning from '../components/Mylearning/Mylearning';
 import Layout from '../components/Layout/Layout';
 const LazyLoadingBlog = React.lazy(() => import("../components/Blog/Blog"));
 const LazyLoadingTeachers = React.lazy(() => import("../components/Teachers/Teachers"));
 const LazyLoadingCourses = React.lazy(() => import("../components/Courses/Courses"));
+const LazyLoadingRequests = React.lazy(() => import("../dashboard/EnrollmentRequests/Enrollment"));
+const LazyLoadingAddCourses= React.lazy(() => import("../dashboard/courses/AddCourses"));
+const LazyLoadingInstructor= React.lazy(() => import("../dashboard/Instructors/Instructors"));
 
 const Roting = () => {
 // const users = JSON.parse(localStorage.getItem("token"))
@@ -51,7 +51,7 @@ const users = JSON.parse(localStorage.getItem("token"))?JSON.parse(localStorage.
         <Route path="/course/:name" element={<CourseDetails/>} />
         <Route path="/services" element={<Services/>} />
         <Route path="/instructors" element={<React.Suspense fallback="Loading Instructors...">
-              <LazyLoadingTeachers/>
+        <LazyLoadingTeachers/>
           </React.Suspense>} />
     {users? <Route path="/mylearning" element={<Mylearning/>} /> : <Route path="/mylearning" element={<MyProfile/>} />}
 
@@ -70,13 +70,29 @@ const users = JSON.parse(localStorage.getItem("token"))?JSON.parse(localStorage.
      {users && users.isAdmin=='Admin'?     <Route path="/admin" element={<Admin/>} >
         <Route path='/admin/contacts' element={<Contacts/>} />
         <Route path='/admin/Blogs' element={<AddBlogs/>} />
-        <Route path='/admin/addCourses' element={<AddCourses/>} />
+        <Route path='/admin/addCourses' element={
+          <React.Suspense fallback="Loading Courrses...">
+          <LazyLoadingAddCourses/>
+      </React.Suspense>
+        } />
         <Route path='admin/addvideo' element={<Addvideo/>} />
-        <Route path='admin/instructors' element={<Instructor/>} />
-        <Route path='admin/requestes' element={<Enrollment/>} />
+        <Route path='admin/instructors' element={
+          <React.Suspense fallback="Loading Instructors...">
+          <LazyLoadingInstructor/>
+      </React.Suspense>
+        } />
+        <Route path='admin/requestes' element={
+          <React.Suspense fallback="Loading Requests...">
+          <LazyLoadingRequests/>
+      </React.Suspense>
+        } />
         <Route path='admin/slider' element={<Slider/>} />
         
-        <Route path="/admin" element={<Instructor/>} />
+        <Route path="/admin" element={
+          <React.Suspense fallback="Loading Instructors...">
+          <LazyLoadingInstructor/>
+      </React.Suspense>
+        } />
 
         </Route>:
         <Route path="/admin" element={<Home/>} />

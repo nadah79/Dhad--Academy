@@ -39,15 +39,14 @@ function Teachers() {
     <>
       <CommonSection title={t('Instructors')} img={`${teachers}`} />
       <Container className='py-5'>
-        <Row xs={2} lg={3} className=''>
+        <div className=' row d-flex justify-content-md-start justify-content-center'>
         {instructors?instructors.map((instructor) => (
-            
-          <Col key={instructor?._id}>
+          <div key={instructor?._id} className='col-9 col-md-6 col-lg-4'>
             <Instructor name={instructor?.username} img={`${apihttp}${instructor?.image}`} position={instructor?.isAdmin} />
-          </Col>
+          </div>
              )):''} 
 
-        </Row>
+        </div>
 
       </Container>
       <section className='be-instructor position-relative d-flex justify-content-between align-items-center py-5 overflow-hidden'>

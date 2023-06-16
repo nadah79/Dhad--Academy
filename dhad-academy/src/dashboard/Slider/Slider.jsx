@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
@@ -105,6 +104,15 @@ const settings = {
 return (
   <>
     <h3>{t('Slider')}</h3>
+    <Container className='p-5'>
+       <Slider {...settings}>
+    {files.map((file) => (
+      <div key={file._id}>
+        <img width={"100%"} height={400} src={`${apihttp}${file.name}`} alt={file.name} />
+      </div>
+    ))}
+  </Slider>
+       </Container>
     <div className='p-3 row'>
     {/* <h5>{t('FileUploader')}</h5> */}
     <div className=' w-50 m-auto'>
@@ -126,22 +134,16 @@ return (
     <ul>
       {files.map((file) => (
         <li key={file._id} className='py-2'>
-          {file.name} ({file.mimetype})
-          <img src={`${apihttp}${file.name}`} width={200} />
-          <button className='btn btn-light  m-2' onClick={() => handleDownload(file._id)}>{t('Download')}</button>
-          <button className='btn btn-dark m-2' onClick={() => handleDelete(file._id)}>{t('Delete')}</button>
+         <span> {file.name} ({file.mimetype})</span>
+          <img src={`${apihttp}${file.name}`} width={200} className=' mx-3' />
+          <button className='btn btn-accecpt  m-2' onClick={() => handleDownload(file._id)}>{t('Download')}</button>
+          <button className='btn btn-delete m-2' onClick={() => handleDelete(file._id)}>{t('Delete')}</button>
         </li>
       ))}
     </ul>
     </div>
         </div>
-        <Slider {...settings}>
-    {files.map((file) => (
-      <div key={file._id}>
-        <img width={"100%"} height={400} src={`${apihttp}${file.name}`} alt={file.name} />
-      </div>
-    ))}
-  </Slider>
+       
   </>
 );
 }

@@ -8,16 +8,12 @@ const addBlogModel = mongoose.Schema({
         type:String,
         required:[true,"enter your name please"],
         trim: true,
-        minLength:10,
-        maxLength:200,
         
     },
     titleAR: {
         type:String,
         required:[true,"enter your name please"],
         trim: true,
-        minLength:10,
-        maxLength:200,
         
     },
     description: {
@@ -54,8 +50,8 @@ function validateaddBlog (obj){
 const schema = joi.object({
     title : joi.string().trim().required(),
     titleAR : joi.string().trim().required(),
-    description :joi.string().trim().min(15).required(),
-    descriptionAR :joi.string().trim().min(15).required(),
+    description :joi.string().trim().required(),
+    descriptionAR :joi.string().trim().required(),
 
 });
 return schema.validate(obj);

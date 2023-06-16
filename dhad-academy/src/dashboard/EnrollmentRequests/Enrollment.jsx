@@ -99,8 +99,8 @@ function Enrollment() {
               <td>{enrollmentRequest.status}</td>
 
               <td>
-                <button className="btn btn-accecpt m-2" onClick={() => handleAccept(enrollmentRequest)}>Accept</button>
-                <button className="btn btn-delete m-2" onClick={() => handleReject(enrollmentRequest)}>Reject</button>
+                <button className="btn btn-accecpt m-2" onClick={() => handleAccept(enrollmentRequest)}>{t('Accept')}</button>
+                <button className="btn btn-delete m-2" onClick={() => handleReject(enrollmentRequest)}>{t('Reject')}</button>
               </td>
             </tr>
           )) : "loading..."}

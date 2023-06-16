@@ -121,6 +121,8 @@
     "UserName":"اسم المستخدم",
     "Actions":"Actions",
     "Status":"حالة الطلب",
+    "Reject":"رفض",
+    "Accept":"قبول",
     "Course":"الكورس",
     "DeleteAll":"حذف الكل",
     "NoMessages":"لا يوجد رسائل",
